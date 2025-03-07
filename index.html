@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDE Portfolio - Intelligent Big Data Systems Specialist</title>
+    <link rel="stylesheet"  href="/static/css/styles.css">
+    <!-- HTMX for interactive elements -->
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Kothe Viswanath</div>
+            <ul class="nav-links">
+                <li><a href="#" hx-get="/about" hx-target="#content" hx-trigger="click" class="nav-item active" onclick="setActiveNav(this)">About</a></li>
+                <li><a href="#" hx-get="/skills" hx-target="#content" hx-trigger="click" class="nav-item" onclick="setActiveNav(this)">Skills</a></li>
+                <li><a href="#" hx-get="/projects" hx-target="#content" hx-trigger="click" class="nav-item" onclick="setActiveNav(this)">Projects</a></li>
+                <li><a href="#" hx-get="/experience" hx-target="#content" hx-trigger="click" class="nav-item" onclick="setActiveNav(this)">Experience</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Software Development Engineer</h1>
+                <h2>Specializing in Intelligent Big Data Systems</h2>
+                <p>Building high-performance, scalable distributed architectures and real-time data processing solutions</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn primary">Contact Me</a>
+                    <a href="https://github.com/kafka-495" class="btn secondary" target="_blank">View GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="content" class="content-section">
+            <!-- Content will be loaded here via HTMX -->
+            <!-- Loading the About section by default -->
+            <div hx-get="/about" hx-trigger="load" hx-swap="innerHTML"></div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Get In Touch</h2>
+            <form hx-post="/contact" hx-target="#contact-response">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn primary">Send Message</button>
+            </form>
+            <div id="contact-response"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/kothe-viswanath" target="_blank">LinkedIn</a>
+                <a href="https://github.com/kafka-495" target="_blank">GitHub</a>
+                <a href="mailto:viswanathkothe@gmail.com">Email</a>
+            </div>
+            <p>&copy; 2025 SDE Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
