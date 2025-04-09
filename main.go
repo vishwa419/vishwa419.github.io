@@ -16,12 +16,12 @@ func main() {
 	}
 
 	// Set up template handling
-	tmpl := template.Must(template.ParseGlob("templates/*.html"))
-	template.Must(tmpl.ParseGlob("templates/partials/*.html"))
+	tmpl := template.Must(template.ParseGlob("*.html"))
+	template.Must(tmpl.ParseGlob("*.html"))
 
 	// Static file server
-	fs := http.FileServer(http.Dir("static"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
+	fs := http.FileServer(http.Dir(""))
+	http.Handle("/static/", http.StripPrefix("", fs))
 
 	// Main route
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
