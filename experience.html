@@ -1,9 +1,83 @@
+<style>
+  .experience-section .projcard {
+    padding: 1.5rem;
+    background: #fdfdfd;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: left;
+  }
+
+  .experience-section .projimage {
+    align-self: flex-start;
+    margin-bottom: 0.5rem;
+    color: #4a90e2;
+  }
+
+  .experience-section .timelinetitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .experience-section .timelinedate,
+  .experience-section .timelinecompany {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #666;
+    margin-top: -0.5rem;
+  }
+
+  .experience-section .timelinedescription {
+    font-size: 0.95rem;
+    color: #444;
+  }
+
+  .experience-section .timelineachievements {
+    margin-top: 0.75rem;
+  }
+
+  .experience-section .timelineachievements ul {
+    padding-left: 1.25rem;
+    list-style: disc;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    color: #444;
+  }
+
+  .experience-section .cat-titles {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #222;
+  }
+
+  .experience-section .cat-icons {
+    margin-left: auto;
+  }
+
+  .experience-section .cat-headers {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #f0f4f8;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .experience-section .cat-contents {
+    padding: 1rem 0 0.5rem 0;
+  }
+</style>
+
 <div class="experience-section">
   <div class="container">
     <h2 class="section-title">Professional Experience</h2>
 
     <div class="cat-grids">
-
       <!-- Research Experience -->
       <div class="cat-cards">
         <input type="checkbox" id="experience1">
@@ -18,12 +92,12 @@
             <div class="timelinedate">May 2024 – Aug 2024</div>
             <div class="timelinecompany">Syracuse University</div>
             <div class="timelinedescription">
-              <p>Advanced research in Multi-Agent Reinforcement Learning (MARL) and explainable AI to build more interpretable, high-performing agents.</p>
+              <p>Contributed to Multi-Agent Reinforcement Learning (MARL) research and explainable AI systems.</p>
             </div>
             <div class="timelineachievements">
               <ul>
-                <li>Developed and evaluated communication-aware MARL algorithms (TarMAC, BAMS, novel method) on SMAC environments with >87% accuracy.</li>
-                <li>Analyzed inter-agent communication protocols to enhance explainability in MARL policies; supporting publication in peer-reviewed venue.</li>
+                <li>Implemented and evaluated algorithms such as TarMAC, BAMS, and a novel algorithm on SMAC-Starcraft II, achieving more than 87% accuracy.</li>
+                <li>Performed exhaustive analysis of communication protocols, enabling explainable MARL systems, contributing to a potential publication.</li>
               </ul>
             </div>
           </div>
@@ -38,45 +112,41 @@
           <div class="cat-icons"><span class="expand-icon">+</span><span class="collapse-icon">−</span></div>
         </label>
         <div class="cat-contents">
-
-          <!-- ISRO -->
           <div class="projcard">
             <div class="projimage"><i class="fas fa-satellite fa-3x"></i></div>
             <div class="timelinetitle">Software Engineer</div>
             <div class="timelinedate">Jan 2021 – Jul 2022</div>
             <div class="timelinecompany">Indian Space Research Organization (ISRO)</div>
             <div class="timelinedescription">
-              <p>Led full-stack development for national-scale satellite monitoring, anomaly detection, and data processing pipelines using cutting-edge AI and backend systems.</p>
+              <p>Developed and optimized scalable data systems, real-time satellite monitoring solutions, and AI-based anomaly detection frameworks.</p>
             </div>
             <div class="timelineachievements">
               <ul>
-                <li>Developed <strong>SAT EYE</strong>: an ML-based real-time monitoring platform (Django/Flask/Dash) analyzing 70 satellite parameters—cut analyst workload by 40%.</li>
-                <li>Designed transformer-based anomaly detection using contrastive learning—reduced missed anomalies by 20%, especially for rare mission-critical events.</li>
-                <li>Built forecasting + clustering framework for time series anomaly detection—saved 40 analyst hours/week and boosted early warning system accuracy.</li>
-                <li>Engineered CCTV ingestion pipeline (Kafka/Go/Django) for 3TB daily data—24/7 secure monitoring across sensitive installations.</li>
-                <li>Developed self-service CI/CD with Kubernetes, Git, Proxmox—enabled rapid iteration, standardized deployment, and improved team autonomy.</li>
-                <li>Architected and deployed <strong>TAPAS</strong>: a Kafka-Golang data bus serving 15 teams with RBAC access and near real-time data delivery from satellite ground stations.</li>
+                <li><strong>SAT EYE:</strong> Real-time satellite monitoring system with anomaly detection using Django, Flask, Dash; reduced workload by 40% and improved reliability.</li>
+                <li><strong>Transformer + Contrastive Learning:</strong> Designed a novel architecture that reduced missed anomalies by 20%, boosting accuracy for high-impact cases.</li>
+                <li><strong>Forecasting Framework:</strong> Built a Bayesian forecasting and clustering-based anomaly detection tool, saving 40 hours weekly for domain experts.</li>
+                <li><strong>CCTV Pipeline:</strong> Engineered a scalable Kafka/Go/Django pipeline to process 3TB of data daily, enhancing national security monitoring.</li>
+                <li><strong>Self-Service CI/CD Platform:</strong> Built using Kubernetes, Git, Proxmox, and Calico for scalable and secure Agile deployments.</li>
+                <li><strong>TAPAS Platform:</strong> Developed a real-time data ingestion platform using Kafka and Golang, serving 15 internal tools with RBAC access control.</li>
               </ul>
             </div>
           </div>
 
-          <!-- Blinx AI -->
           <div class="projcard">
             <div class="projimage"><i class="fas fa-microchip fa-3x"></i></div>
             <div class="timelinetitle">Software Engineer</div>
             <div class="timelinedate">Aug 2020 – Dec 2020</div>
             <div class="timelinecompany">Blinx AI</div>
             <div class="timelinedescription">
-              <p>Delivered end-to-end data analytics and infrastructure solutions for real-time metric tracking and decision support.</p>
+              <p>Built and optimized data lakes and dashboards for real-time data processing and analytics.</p>
             </div>
             <div class="timelineachievements">
               <ul>
-                <li>Built distributed data lake using Kafka, Docker, Go, and Cassandra—reduced processing latency by 18% and improved throughput by 20%.</li>
-                <li>Designed and deployed dynamic Flask dashboards for real-time KPIs and anomaly signals—enhanced visibility for business and ML teams.</li>
+                <li>Developed a scalable data lake architecture with Kafka, Docker, Go, and Apache Cassandra; achieved 20% faster processing and 18% latency reduction.</li>
+                <li>Created and deployed real-time Flask dashboards to visualize key performance indicators, improving insight discovery and response speed.</li>
               </ul>
             </div>
           </div>
-
         </div>
       </div>
 
