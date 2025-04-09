@@ -46,6 +46,7 @@ func main() {
 	})
 
 	http.HandleFunc("/projects", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/javascript")
 		tmpl.ExecuteTemplate(w, "projects.html", nil)
 	})
 
@@ -62,7 +63,7 @@ func main() {
 
 			// In a real app, you would save this or send an email
 			// For demo, just respond with a success message
-			w.Header().Set("Content-Type", "text/html")
+			w.Header().Set("Content-Type", "text/javascript")
 			fmt.Fprintf(w, "<div class='alert alert-success'>Thank you %s! Your message has been received. We'll contact you at %s shortly.</div>", name, email)
 			return
 		}

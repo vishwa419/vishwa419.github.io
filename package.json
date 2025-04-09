@@ -1,0 +1,22 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+   "scripts": {
+      "server": "webpack-dashboard -- webpack-dev-server --inline --port 8080", 
+      "dev": "nodemon server.js",
+      "webdriver-update": "webdriver-manager update"
+   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kafka-495/kafka-495.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kafka-495/kafka-495.github.io/issues"
+  },
+  "homepage": "https://github.com/kafka-495/kafka-495.github.io#readme"
+}
