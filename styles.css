@@ -865,6 +865,8 @@ footer p {
 .dropdown-item + .dropdown-item {
     margin-top: 2px;
 }
+
+/* Experience Section - Updated Style */
 .experience-section .projcard {
     padding: 1.5rem;
     background: #fdfdfd;
@@ -875,56 +877,59 @@ footer p {
     flex-direction: column;
     gap: 0.75rem;
     text-align: left;
-  }
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-  .experience-section .projimage {
+.experience-section .projimage {
     align-self: flex-start;
     margin-bottom: 0.5rem;
     color: #4a90e2;
-  }
+}
 
-  .experience-section .timelinetitle {
+.experience-section .timelinetitle {
     font-size: 1.25rem;
     font-weight: 600;
     color: #333;
-  }
+}
 
-  .experience-section .timelinedate,
-  .experience-section .timelinecompany {
+.experience-section .timelinedate,
+.experience-section .timelinecompany {
     font-size: 0.95rem;
     font-weight: 500;
     color: #666;
     margin-top: -0.5rem;
-  }
+}
 
-  .experience-section .timelinedescription {
+.experience-section .timelinedescription {
     font-size: 0.95rem;
     color: #444;
-  }
+}
 
-  .experience-section .timelineachievements {
+.experience-section .timelineachievements {
     margin-top: 0.75rem;
-  }
+}
 
-  .experience-section .timelineachievements ul {
+.experience-section .timelineachievements ul {
     padding-left: 1.25rem;
     list-style: disc;
     line-height: 1.6;
     font-size: 0.95rem;
     color: #444;
-  }
+}
 
-  .experience-section .cat-titles {
+.experience-section .cat-titles {
     font-size: 1.15rem;
     font-weight: 600;
     color: #222;
-  }
+}
 
-  .experience-section .cat-icons {
+.experience-section .cat-icons {
     margin-left: auto;
-  }
+}
 
-  .experience-section .cat-headers {
+.experience-section .cat-headers {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -932,8 +937,54 @@ footer p {
     background-color: #f0f4f8;
     border-radius: 8px;
     cursor: pointer;
-  }
+}
 
-  .experience-section .cat-contents {
+.experience-section .cat-contents {
     padding: 1rem 0 0.5rem 0;
-  }
+}
+
+/* Icon Styling for Expanded/Collapsed Sections */
+.experience-section .expand-icon, 
+.experience-section .collapse-icon {
+    font-size: 1.5rem;
+    color: #4a90e2;
+}
+
+.experience-section .cat-cards input[type="checkbox"]:checked + .cat-headers .collapse-icon {
+    display: inline;
+}
+
+.experience-section .cat-cards input[type="checkbox"]:not(:checked) + .cat-headers .expand-icon {
+    display: inline;
+}
+
+.experience-section .cat-cards input[type="checkbox"]:checked + .cat-headers .expand-icon {
+    display: none;
+}
+
+.experience-section .cat-cards input[type="checkbox"]:not(:checked) + .cat-headers .collapse-icon {
+    display: none;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .experience-section .projcard {
+        padding: 1.25rem;
+    }
+
+    .experience-section .cat-headers {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .experience-section .cat-icons {
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+    .experience-section .cat-titles {
+        font-size: 1.25rem;
+    }
+}
+
