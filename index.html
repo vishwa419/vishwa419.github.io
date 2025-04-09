@@ -43,7 +43,124 @@
     <main>
         
         <section id="content" class="content-section">
-            {{"about.html" .}}
+            <section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="animate-in">Software Development Engineer</h1>
+            <h2 class="animate-in delay-1">Specializing in Intelligent Big Data Systems</h2>
+            <p class="animate-in delay-2">Building high-performance, scalable distributed architectures and real-time data processing solutions</p>
+            <div class="cta-buttons animate-in delay-3">
+                <a href="#" class="btn primary" hx-get="/contact" hx-target="#content" hx-push-url="false" hx-swap="innerHTML">Contact Me</a>
+                <a href="https://github.com/kafka-495" class="btn secondary" target="_blank">View GitHub</a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-backdrop"></div>
+</section>
+
+<section class="about-section">
+    <div class="about-container">
+        <h2 class="section-title">About Me</h2>
+        <p class="intro-text">
+            I'm an innovative <span class="highlight-text">Software Development Engineer</span> with a passion for building
+            high-performance, <span class="highlight-text">scalable systems</span> that push the boundaries of data engineering
+            and <span class="highlight-text">deep learning</span>. I specialize in creating <span class="highlight-text">intelligent
+                systems</span> that turn raw data into actionable insights.
+        </p>
+
+        <div class="about-body">
+            <p>
+                With expertise in <span class="highlight-text">Python</span>, <span class="highlight-text">C++</span>, and <span
+                    class="highlight-text">TensorFlow</span>, I have a strong foundation in both cloud-native systems and <span
+                    class="highlight-text">AI/ML</span> technologies. My career has been built around leveraging cutting-edge tools
+                and techniques to solve complex problems at scale.
+            </p>
+            <p>
+                Whether it's developing real-time data pipelines or deploying <span class="highlight-text">machine learning models</span>
+                for predictive analytics, I thrive in challenging environments that demand high-throughput, low-latency solutions.
+                I'm particularly excited by the opportunity to work on systems that use data to <span class="highlight-text">drive
+                    innovation</span> and improve business outcomes.
+            </p>
+            <p>
+                Throughout my career, I have had the privilege of working on mission-critical projects—from enhancing satellite data
+                processing at the <span class="highlight-text">Indian Space Research Organization</span> to contributing to
+                advanced ML research. These experiences have strengthened my problem-solving and leadership abilities, preparing me
+                for roles that demand excellence in both technical and collaborative work.
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* About Section Styles */
+    .about-section {
+        padding: 40px 20px;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .about-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        color: #555;
+    }
+
+    .about-body p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .highlight-text {
+        color: #3b82f6;
+        font-weight: 600;
+    }
+
+    .about-body {
+        margin-top: 20px;
+    }
+
+    /* Adjustments for mobile */
+    @media (max-width: 768px) {
+        .about-section {
+            padding: 20px 10px;
+        }
+
+        .about-container {
+            padding: 15px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+        }
+
+        .intro-text {
+            font-size: 1rem;
+        }
+
+        .about-body p {
+            font-size: 0.95rem;
+        }
+    }
+</style>
+
         </section>
     </main>
 
