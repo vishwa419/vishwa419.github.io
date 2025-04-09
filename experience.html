@@ -1,85 +1,88 @@
 <div class="experience-section">
-    <div class="container">
-        <h2 class="section-title animate-in">Professional Experience</h2>
-        
-        <div class="timeline animate-in delay-1">
-            <!-- Research Assistant at Syracuse University -->
-            <div class="timeline-item">
-                <div class="timeline-date">May 2024 - Aug 2024</div>
-                <div class="timeline-title">Research Assistant</div>
-                <div class="timeline-company">Syracuse University</div>
-                <div class="timeline-description">
-                    <p>Contributed to Multi-Agent Reinforcement Learning (MARL) research and explainable AI systems.</p>
-                </div>
-                <div class="timeline-achievements">
-                    <ul>
-                        <li>Implemented and evaluated algorithms such as TarMAC, BAMS, and a novel algorithm on SMAC-Starcraft II, achieving more than 87% accuracy.</li>
-                        <li>Performed exhaustive analysis of communication protocols, enabling explainable MARL systems, contributing to a potential publication.</li>
-                    </ul>
-                </div>
+  <div class="container">
+    <h2 class="section-title">Professional Experience</h2>
+    
+    <div class="cat-grids">
+      
+      <!-- Research Experience -->
+      <div class="cat-cards">
+        <input type="checkbox" id="experience1">
+        <label for="experience1" class="cat-headers">
+          <h3 class="cat-titles">Research Experience</h3>
+          <div class="cat-icons"><span class="expand-icon">+</span><span class="collapse-icon">−</span></div>
+        </label>
+        <div class="cat-contents">
+          
+          <!-- Research Assistant at Syracuse University -->
+          <div class="projcard">
+            <div class="projimage"><i class="fas fa-university fa-3x"></i></div>
+            <div class="timelinetitle">Research Assistant</div>
+            <div class="timelinedate">May 2024 - Aug 2024</div>
+            <div class="timelinecompany">Syracuse University</div>
+            <div class="timelinedescription">
+              <p>Contributed to Multi-Agent Reinforcement Learning (MARL) research and explainable AI systems.</p>
             </div>
-            
-            <!-- Software Engineer at ISRO -->
-            <div class="timeline-item">
-                <div class="timeline-date">Jan 2021 - Jul 2022</div>
-                <div class="timeline-title">Software Engineer</div>
-                <div class="timeline-company">Indian Space Research Organization (ISRO)</div>
-                <div class="timeline-description">
-                    <p>Developed and optimized scalable data systems, real-time satellite monitoring solutions, and AI-based anomaly detection frameworks.</p>
-                </div>
-                <div class="timeline-achievements">
-                    <ul>
-                        <li><strong>Developed SAT EYE - Real-Time Satellite Monitoring with Anomaly Detection:</strong> Contributed to the development of SAT EYE, a real-time ML-based satellite monitoring system using Django, Flask, and Dash. The system enabled continuous anomaly detection and monitoring of 70 satellite parameters, reducing the workload of domain experts by 40% and significantly improving system reliability and customer satisfaction.</li>
-                        <li><strong>Researched and Designed a Novel Transformer Architecture for Anomaly Detection:</strong> Conducted research and designed a novel transformer architecture combined with contrastive learning to enhance the real-time monitoring of 65 satellite parameters. This innovation led to a 20% reduction in missed anomalies, especially for high-impact, low-frequency events, greatly improving the monitoring system's accuracy and performance.</li>
-                        <li><strong>Developed a Forecasting and Anomaly Detection Framework:</strong> Developed a framework for parameter forecasting and anomaly detection using Bayesian estimates, advanced forecasting techniques, and unsupervised clustering. This solution streamlined processes, saving 40 hours per week for domain experts and enabling more accurate and timely anomaly detection.</li>
-                        <li><strong>Designed and Implemented a Scalable CCTV Data Processing Pipeline:</strong> Led the design and implementation of a CCTV data processing pipeline using Kafka, Go, and Django, capable of managing and processing over 3TB of CCTV data daily. This pipeline ensured real-time data ingestion, 24/7 monitoring of sensitive zones, and optimized data storage and retrieval, enhancing security operations across the organization.</li>
-                        <li><strong>Built a Self-Service CI/CD Platform:</strong> Designed and implemented a self-service CI/CD pipeline using Kubernetes, Git, Proxmox, and Calico. This solution facilitated Agile development by enabling on-demand scaling, automating deployments, and enforcing standardized security practices, leading to faster development cycles and enhanced deployment efficiency.</li>
-                        <li><strong>Developed and Optimized TAPAS:</strong> Led the development and optimization of TAPAS, a scalable data ingestion platform built with Kafka and Golang. This platform enabled real-time data flow from satellite antennas to 15 internal tools across five teams, with RBAC-based access control to ensure secure and efficient data management across the organization.</li>
-                    </ul>
-                </div>
+            <div class="timelineachievements">
+              <ul>
+                <li>Implemented and evaluated algorithms such as TarMAC, BAMS, and a novel algorithm on SMAC-Starcraft II, achieving more than 87% accuracy.</li>
+                <li>Performed exhaustive analysis of communication protocols, enabling explainable MARL systems, contributing to a potential publication.</li>
+              </ul>
             </div>
-            
-            <!-- Software Engineer at Blinx AI -->
-            <div class="timeline-item">
-                <div class="timeline-date">Aug 2020 - Dec 2020</div>
-                <div class="timeline-title">Software Engineer</div>
-                <div class="timeline-company">Blinx AI</div>
-                <div class="timeline-description">
-                    <p>Built and optimized data lakes and dashboards for real-time data processing and analytics.</p>
-                </div>
-                <div class="timeline-achievements">
-                    <ul>
-                        <li>Built a high-performance, microservice-based data lake (Kafka/Docker/Go) with dynamic pub-sub architecture and integrated Apache Cassandra for scalable, low-latency storage, achieving 20% faster processing and 18% latency reduction.</li>
-                        <li>Designed and deployed an analytics-focused Flask dashboard, providing detailed, real-time visualizations of key performance metrics, enabling teams to quickly identify trends, uncover insights, and optimize data-driven strategies.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+          </div>
 
-<script>
-    // Add a bit of interaction - expand/collapse functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        
-        timelineItems.forEach(item => {
-            const description = item.querySelector('.timeline-description');
-            const achievements = item.querySelector('.timeline-achievements');
-            
-            description.addEventListener('click', function() {
-                if (achievements.style.display === 'none' || achievements.style.display === '') {
-                    achievements.style.display = 'block';
-                    item.classList.add('expanded');
-                } else {
-                    achievements.style.display = 'none';
-                    item.classList.remove('expanded');
-                }
-            });
-            
-            // Set initial state
-            achievements.style.display = 'none';
-            description.style.cursor = 'pointer';
-        });
-    });
-</script>
+        </div>
+      </div>
+
+      <!-- Software Engineering Experience -->
+      <div class="cat-cards">
+        <input type="checkbox" id="experience2">
+        <label for="experience2" class="cat-headers">
+          <h3 class="cat-titles">Software Engineering Experience</h3>
+          <div class="cat-icons"><span class="expand-icon">+</span><span class="collapse-icon">−</span></div>
+        </label>
+        <div class="cat-contents">
+
+          <!-- Software Engineer at ISRO -->
+          <div class="projcard">
+            <div class="projimage"><i class="fas fa-satellite fa-3x"></i></div>
+            <div class="timelinetitle">Software Engineer</div>
+            <div class="timelinedate">Jan 2021 - Jul 2022</div>
+            <div class="timelinecompany">Indian Space Research Organization (ISRO)</div>
+            <div class="timelinedescription">
+              <p>Developed and optimized scalable data systems, real-time satellite monitoring solutions, and AI-based anomaly detection frameworks.</p>
+            </div>
+            <div class="timelineachievements">
+              <ul>
+                <li><strong>Developed SAT EYE - Real-Time Satellite Monitoring with Anomaly Detection:</strong> Contributed to the development of SAT EYE, a real-time ML-based satellite monitoring system using Django, Flask, and Dash. The system enabled continuous anomaly detection and monitoring of 70 satellite parameters, reducing the workload of domain experts by 40% and significantly improving system reliability and customer satisfaction.</li>
+                <li><strong>Researched and Designed a Novel Transformer Architecture for Anomaly Detection:</strong> Conducted research and designed a novel transformer architecture combined with contrastive learning to enhance the real-time monitoring of 65 satellite parameters. This innovation led to a 20% reduction in missed anomalies, especially for high-impact, low-frequency events, greatly improving the monitoring system's accuracy and performance.</li>
+                <li><strong>Developed a Forecasting and Anomaly Detection Framework:</strong> Developed a framework for parameter forecasting and anomaly detection using Bayesian estimates, advanced forecasting techniques, and unsupervised clustering. This solution streamlined processes, saving 40 hours per week for domain experts and enabling more accurate and timely anomaly detection.</li>
+                <li><strong>Designed and Implemented a Scalable CCTV Data Processing Pipeline:</strong> Led the design and implementation of a CCTV data processing pipeline using Kafka, Go, and Django, capable of managing and processing over 3TB of CCTV data daily. This pipeline ensured real-time data ingestion, 24/7 monitoring of sensitive zones, and optimized data storage and retrieval, enhancing security operations across the organization.</li>
+                <li><strong>Built a Self-Service CI/CD Platform:</strong> Designed and implemented a self-service CI/CD pipeline using Kubernetes, Git, Proxmox, and Calico. This solution facilitated Agile development by enabling on-demand scaling, automating deployments, and enforcing standardized security practices, leading to faster development cycles and enhanced deployment efficiency.</li>
+                <li><strong>Developed and Optimized TAPAS:</strong> Led the development and optimization of TAPAS, a scalable data ingestion platform built with Kafka and Golang. This platform enabled real-time data flow from satellite antennas to 15 internal tools across five teams, with RBAC-based access control to ensure secure and efficient data management across the organization.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Software Engineer at Blinx AI -->
+          <div class="projcard">
+            <div class="projimage"><i class="fas fa-microchip fa-3x"></i></div>
+            <div class="timelinetitle">Software Engineer</div>
+            <div class="timelinedate">Aug 2020 - Dec 2020</div>
+            <div class="timelinecompany">Blinx AI</div>
+            <div class="timelinedescription">
+              <p>Built and optimized data lakes and dashboards for real-time data processing and analytics.</p>
+            </div>
+            <div class="timelineachievements">
+              <ul>
+                <li>Built a high-performance, microservice-based data lake (Kafka/Docker/Go) with dynamic pub-sub architecture and integrated Apache Cassandra for scalable, low-latency storage, achieving 20% faster processing and 18% latency reduction.</li>
+                <li>Designed and deployed an analytics-focused Flask dashboard, providing detailed, real-time visualizations of key performance metrics, enabling teams to quickly identify trends, uncover insights, and optimize data-driven strategies.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
