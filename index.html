@@ -4,204 +4,269 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kothe Viswanath | Software Development Engineer</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6e42c1',
+                        'primary-dark': '#5a32a3',
+                        secondary: '#121212',
+                        accent: '#10c2c2',
+                        'accent-green': '#10b981',
+                        'text-main': '#1f2937',
+                        'text-light': '#4b5563',
+                        'bg-main': '#f9fafb',
+                        'card-bg': '#ffffff',
+                        'light-gray': '#e5e7eb'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'custom': '0 4px 16px rgba(0, 0, 0, 0.08)',
+                        'custom-hover': '0 10px 24px rgba(0, 0, 0, 0.15)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom gradients that Tailwind doesn't provide by default */
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #6e42c1, #9062dd);
+        }
+        .bg-gradient-accent {
+            background: linear-gradient(135deg, #10c2c2, #10b981);
+        }
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-1 {
+            transition-delay: 0.2s;
+        }
+        .delay-2 {
+            transition-delay: 0.4s;
+        }
+        .delay-3 {
+            transition-delay: 0.6s;
+        }
+        .hero-backdrop {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(110, 66, 193, 0.05) 0%, rgba(16, 194, 194, 0.08) 100%);
+            clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+            z-index: -1;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 80% 10%, rgba(110, 66, 193, 0.1) 0%, transparent 12px),
+                radial-gradient(circle at 90% 20%, rgba(16, 194, 194, 0.1) 0%, transparent 24px),
+                radial-gradient(circle at 70% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 18px),
+                radial-gradient(circle at 95% 60%, rgba(110, 66, 193, 0.1) 0%, transparent 15px),
+                radial-gradient(circle at 75% 80%, rgba(16, 194, 194, 0.1) 0%, transparent 20px);
+            z-index: -1;
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans text-text-main bg-bg-main">
     <header>
-        <nav class="navbar">
-            <div class="container">
-                <div class="logo">KV</div>
-                <div class="name">Kothe Viswanath</div>
-                <button class="menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+        <nav class="fixed w-full top-0 left-0 z-50 bg-white bg-opacity-95 backdrop-blur-md shadow-md border-b border-light-gray border-opacity-50 h-[70px]">
+            <div class="container mx-auto px-6 h-full flex items-center justify-between">
+                <a href="/" class="text-2xl font-extrabold text-primary mr-6 tracking-tight relative">KV</a>
+                <div class="text-lg font-semibold text-secondary mr-auto">Kothe Viswanath</div>
+                
+                <button class="md:hidden flex flex-col justify-center items-center w-10 h-10 relative" aria-label="Toggle menu">
+                    <span class="block w-6 h-0.5 bg-text-main mb-1.5"></span>
+                    <span class="block w-6 h-0.5 bg-text-main mb-1.5"></span>
+                    <span class="block w-6 h-0.5 bg-text-main"></span>
                 </button>
-                <ul class="nav-links">
-                    <li><a href="#" class="nav-item active" hx-get="/about" hx-target="#content" hx-push-url="false" hx-swap="innerHTML" hx-trigger="click">About</a></li>
-                    <li><a href="#" class="nav-item" hx-get="/skills" hx-target="#content" hx-push-url="false" hx-swap="innerHTML" hx-trigger="click">Skills</a></li>
-                    <li><a href="#" class="nav-item" hx-get="/projects" hx-target="#content" hx-push-url="false" hx-swap="innerHTML" hx-trigger="click">Projects</a></li>
-                    <li><a href="#" class="nav-item" hx-get="/experience" hx-target="#content" hx-push-url="false" hx-swap="innerHTML" hx-trigger="click">Experience</a></li>
-                    <li class="nav-item dropdown">
-        	    	<a href="#" class="dropdown-toggle" id="resumeDropdown" aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown(event)">Download Resume</a>
-        		<ul class="dropdown-menu" aria-labelledby="resumeDropdown">
-            			<li><a href="/resume/sde_resume.pdf" class="dropdown-item" target="_blank">Software Development Engineer</a></li>
-        	    		<li><a href="/resume/data_engineer_resume.pdf" class="dropdown-item" target="_blank">Data Engineer</a></li>
-        	    		<li><a href="/resume/ml_engineer_resume.pdf" class="dropdown-item" target="_blank">ML Engineer</a></li>
-        		</ul>
-    		    </li>
+                
+                <ul class="hidden md:flex h-full items-center">
+                    <li class="ml-8 h-full flex items-center">
+                        <a href="#" class="nav-item active text-primary font-semibold relative py-2 hover:text-primary transition-all duration-300 after:absolute after:bottom-[-2px] after:left-0 after:h-[3px] after:w-full after:bg-gradient-primary" hx-get="/about" hx-target="#content" hx-push-url="false" hx-swap="innerHTML" hx-trigger="click">About</a>
+                    </li>
+                    <li class="ml-8 h-full flex items-center">
+                        <a href="#" class="nav-item text-text-light font-semibold py-2 hover:text-primary transition-all duration-300" hx-get="/skills" hx-target="#content" hx-push-url="false" hx-swap="innerHTML" hx-trigger="click">Skills</a>
+                    </li>
+                    <li class="ml-8 h-full flex items-center">
+                        <a href="#" class="nav-item text-text-light font-semibold py-2 hover:text-primary transition-all duration-300" hx-get="/projects" hx-target="#content" hx-push-url="false" hx-swap="innerHTML" hx-trigger="click">Projects</a>
+                    </li>
+                    <li class="ml-8 h-full flex items-center">
+                        <a href="#" class="nav-item text-text-light font-semibold py-2 hover:text-primary transition-all duration-300" hx-get="/experience" hx-target="#content" hx-push-url="false" hx-swap="innerHTML" hx-trigger="click">Experience</a>
+                    </li>
+                    <li class="ml-8 h-full flex items-center relative">
+                        <a href="#" class="dropdown-toggle text-text-light font-semibold py-2 hover:text-primary transition-all duration-300" id="resumeDropdown" aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown(event)">Download Resume</a>
+                        <ul class="dropdown-menu hidden absolute bg-white border border-light-gray shadow-lg min-w-[200px] z-50 rounded-lg py-2 top-full right-0" aria-labelledby="resumeDropdown">
+                            <li><a href="/resume/sde_resume.pdf" class="px-6 py-3.5 text-text-main hover:bg-primary hover:bg-opacity-10 hover:text-primary flex items-center font-medium text-base transition-all duration-300" target="_blank">Software Development Engineer</a></li>
+                            <li><a href="/resume/data_engineer_resume.pdf" class="px-6 py-3.5 text-text-main hover:bg-primary hover:bg-opacity-10 hover:text-primary flex items-center font-medium text-base transition-all duration-300" target="_blank">Data Engineer</a></li>
+                            <li><a href="/resume/ml_engineer_resume.pdf" class="px-6 py-3.5 text-text-main hover:bg-primary hover:bg-opacity-10 hover:text-primary flex items-center font-medium text-base transition-all duration-300" target="_blank">ML Engineer</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>
     </header>
 
     <main>
-        
-        <section id="content" class="content-section">
-            <section class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1 class="animate-in">Software Development Engineer</h1>
-            <h2 class="animate-in delay-1">Specializing in Intelligent Big Data Systems</h2>
-            <p class="animate-in delay-2">Building high-performance, scalable distributed architectures and real-time data processing solutions</p>
-            <div class="cta-buttons animate-in delay-3">
-                <a href="#" class="btn primary" hx-get="/contact" hx-target="#content" hx-push-url="false" hx-swap="innerHTML">Contact Me</a>
-                <a href="https://github.com/kafka-495" class="btn secondary" target="_blank">View GitHub</a>
-            </div>
-        </div>
-    </div>
-    <div class="hero-backdrop"></div>
-</section>
+        <section id="content" class="pt-20">
+            <!-- Hero Section -->
+            <section class="hero relative flex items-center h-screen">
+                <div class="container mx-auto px-6">
+                    <div class="max-w-3xl py-10">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-secondary leading-tight mb-5 animate-in relative after:absolute after:bottom-[-12px] after:left-0 after:w-24 after:h-1 after:bg-gradient-primary">Software Development Engineer</h1>
+                        <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-8 animate-in delay-1">Specializing in Intelligent Big Data Systems</h2>
+                        <p class="text-xl text-text-light mb-10 max-w-[90%] leading-relaxed animate-in delay-2">Building high-performance, scalable distributed architectures and real-time data processing solutions</p>
+                        <div class="flex flex-col md:flex-row gap-5 animate-in delay-3">
+                            <a href="#" class="inline-flex items-center justify-center px-8 py-3 rounded-lg font-semibold text-white bg-gradient-primary shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 hover:-translate-y-0.5 transition-all duration-300" hx-get="/contact" hx-target="#content" hx-push-url="false" hx-swap="innerHTML">Contact Me</a>
+                            <a href="https://github.com/kafka-495" class="inline-flex items-center justify-center px-8 py-3 rounded-lg font-semibold text-primary bg-white border border-primary border-opacity-30 shadow-md shadow-primary/5 hover:bg-primary hover:bg-opacity-5 hover:border-primary hover:-translate-y-0.5 transition-all duration-300" target="_blank">View GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-backdrop"></div>
+            </section>
 
-<section class="about-section">
-    <div class="about-container">
-        <h2 class="section-title">About Me</h2>
-        <p class="intro-text">
-            I'm an innovative <span class="highlight-text">Software Development Engineer</span> with a passion for building
-            high-performance, <span class="highlight-text">scalable systems</span> that push the boundaries of data engineering
-            and <span class="highlight-text">deep learning</span>. I specialize in creating <span class="highlight-text">intelligent
-                systems</span> that turn raw data into actionable insights.
-        </p>
-
-        <div class="about-body">
-            <p>
-                With expertise in <span class="highlight-text">Python</span>, <span class="highlight-text">C++</span>, and <span
-                    class="highlight-text">TensorFlow</span>, I have a strong foundation in both cloud-native systems and <span
-                    class="highlight-text">AI/ML</span> technologies. My career has been built around leveraging cutting-edge tools
-                and techniques to solve complex problems at scale.
-            </p>
-            <p>
-                Whether it's developing real-time data pipelines or deploying <span class="highlight-text">machine learning models</span>
-                for predictive analytics, I thrive in challenging environments that demand high-throughput, low-latency solutions.
-                I'm particularly excited by the opportunity to work on systems that use data to <span class="highlight-text">drive
-                    innovation</span> and improve business outcomes.
-            </p>
-            <p>
-                Throughout my career, I have had the privilege of working on mission-critical projects—from enhancing satellite data
-                processing at the <span class="highlight-text">Indian Space Research Organization</span> to contributing to
-                advanced ML research. These experiences have strengthened my problem-solving and leadership abilities, preparing me
-                for roles that demand excellence in both technical and collaborative work.
-            </p>
-        </div>
-    </div>
-</section>
-
-<style>
-    /* About Section Styles */
-    .about-section {
-        padding: 40px 20px;
-        background-color: #f4f4f4;
-        color: #333;
-    }
-
-    .about-container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 20px;
-        background: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-    }
-
-    .section-title {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 15px;
-    }
-
-    .intro-text {
-        font-size: 1.1rem;
-        line-height: 1.7;
-        margin-bottom: 20px;
-        color: #555;
-    }
-
-    .about-body p {
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 15px;
-    }
-
-    .highlight-text {
-        color: #3b82f6;
-        font-weight: 600;
-    }
-
-    .about-body {
-        margin-top: 20px;
-    }
-
-    /* Adjustments for mobile */
-    @media (max-width: 768px) {
-        .about-section {
-            padding: 20px 10px;
-        }
-
-        .about-container {
-            padding: 15px;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-        }
-
-        .intro-text {
-            font-size: 1rem;
-        }
-
-        .about-body p {
-            font-size: 0.95rem;
-        }
-    }
-</style>
-
+            <!-- About Section -->
+            <section class="py-16 md:py-28">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-secondary mb-12 inline-block relative after:absolute after:bottom-[-12px] after:left-0 after:w-20 after:h-1 after:bg-gradient-primary">About Me</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-start">
+                        <div class="flex flex-col items-center">
+                            <div class="w-[280px] h-[280px] rounded-2xl overflow-hidden mb-8 shadow-lg border-4 border-white bg-light-gray relative">
+                                <div class="w-full h-full flex items-center justify-center text-6xl text-text-light bg-gray-100">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="absolute -bottom-1 -right-1 w-[70px] h-[70px] bg-accent opacity-15 rounded-full -z-10"></div>
+                            </div>
+                            
+                            <div class="flex gap-4 mt-6">
+                                <a href="https://linkedin.com/in/kothe-viswanath" target="_blank" class="flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-white text-primary border border-primary border-opacity-20 shadow-sm hover:bg-gradient-primary hover:text-white hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://github.com/kafka-495" target="_blank" class="flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-white text-primary border border-primary border-opacity-20 shadow-sm hover:bg-gradient-primary hover:text-white hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="mailto:viswanathkothe@gmail.com" class="flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-white text-primary border border-primary border-opacity-20 shadow-sm hover:bg-gradient-primary hover:text-white hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-span-2">
+                            <div class="mb-7">
+                                <h3 class="text-2xl font-bold text-secondary relative inline-block pb-2.5 mb-5 after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-gradient-accent">Who I Am</h3>
+                                <p class="text-lg leading-relaxed mb-7">
+                                    I'm an innovative <span class="text-primary font-semibold">Software Development Engineer</span> with a passion for building high-performance, <span class="text-primary font-semibold">scalable systems</span> that push the boundaries of data engineering and <span class="text-primary font-semibold">deep learning</span>. I specialize in creating <span class="text-primary font-semibold">intelligent systems</span> that turn raw data into actionable insights.
+                                </p>
+                                <p class="text-lg leading-relaxed mb-7">
+                                    With expertise in <span class="text-primary font-semibold">Python</span>, <span class="text-primary font-semibold">C++</span>, and <span class="text-primary font-semibold">TensorFlow</span>, I have a strong foundation in both cloud-native systems and <span class="text-primary font-semibold">AI/ML</span> technologies. My career has been built around leveraging cutting-edge tools and techniques to solve complex problems at scale.
+                                </p>
+                                <p class="text-lg leading-relaxed">
+                                    Throughout my career, I have had the privilege of working on mission-critical projects—from enhancing satellite data processing at the <span class="text-primary font-semibold">Indian Space Research Organization</span> to contributing to advanced ML research. These experiences have strengthened my problem-solving and leadership abilities.
+                                </p>
+                            </div>
+                            
+                            <div class="mt-10">
+                                <a href="/resume/sde_resume.pdf" target="_blank" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg-gradient-primary shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 hover:-translate-y-0.5 transition-all duration-300">
+                                    Download Full Resume <i class="fas fa-download ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">KV</div>
-                <div class="social-links">
-                    <a href="https://linkedin.com/in/kothe-viswanath" target="_blank" aria-label="LinkedIn Profile">
+    <footer class="bg-secondary text-white py-16 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent"></div>
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col items-center text-center relative z-10">
+                <div class="text-4xl font-extrabold text-primary mb-10">KV</div>
+                <div class="flex gap-4 mb-10">
+                    <a href="https://linkedin.com/in/kothe-viswanath" target="_blank" class="flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-white bg-opacity-10 text-white hover:bg-primary hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://github.com/kafka-495" target="_blank" aria-label="GitHub Profile">
+                    <a href="https://github.com/kafka-495" target="_blank" class="flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-white bg-opacity-10 text-white hover:bg-primary hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="mailto:viswanathkothe@gmail.com" aria-label="Email Me">
+                    <a href="mailto:viswanathkothe@gmail.com" class="flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-white bg-opacity-10 text-white hover:bg-primary hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
-                <p>&copy; 2025 Kothe Viswanath. All rights reserved.</p>
+                <p class="text-white text-opacity-70">&copy; 2025 Kothe Viswanath. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
         // Toggle mobile menu
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-            this.classList.toggle('active');
+        document.querySelector('button[aria-label="Toggle menu"]').addEventListener('click', function() {
+            const navLinks = document.querySelector('.hidden.md\\:flex');
+            navLinks.classList.toggle('hidden');
+            navLinks.classList.toggle('flex');
+            navLinks.classList.toggle('flex-col');
+            navLinks.classList.toggle('absolute');
+            navLinks.classList.toggle('top-[70px]');
+            navLinks.classList.toggle('left-0');
+            navLinks.classList.toggle('w-full');
+            navLinks.classList.toggle('bg-white');
+            navLinks.classList.toggle('shadow-lg');
+            navLinks.classList.toggle('py-6');
+            navLinks.classList.toggle('px-6');
+            
+            // If it's now visible
+            if (navLinks.classList.contains('flex-col')) {
+                navLinks.querySelectorAll('li').forEach(li => {
+                    li.classList.add('w-full', 'my-3', 'h-auto');
+                    li.classList.remove('ml-8', 'h-full');
+                });
+            } else {
+                navLinks.querySelectorAll('li').forEach(li => {
+                    li.classList.remove('w-full', 'my-3', 'h-auto');
+                    li.classList.add('ml-8', 'h-full');
+                });
+            }
         });
 
         // Set active navigation item
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('nav-item')) {
                 document.querySelectorAll('.nav-item').forEach(navItem => {
-                    navItem.classList.remove('active');
+                    navItem.classList.remove('active', 'text-primary', 'after:absolute', 'after:bottom-[-2px]', 'after:left-0', 'after:h-[3px]', 'after:w-full', 'after:bg-gradient-primary');
+                    navItem.classList.add('text-text-light');
                 });
-                e.target.classList.add('active');
+                e.target.classList.add('active', 'text-primary', 'after:absolute', 'after:bottom-[-2px]', 'after:left-0', 'after:h-[3px]', 'after:w-full', 'after:bg-gradient-primary');
+                e.target.classList.remove('text-text-light');
                 
                 // Close mobile menu after click
-                document.querySelector('.nav-links').classList.remove('active');
-                document.querySelector('.menu-toggle').classList.remove('active');
+                const navLinks = document.querySelector('.md\\:flex');
+                if (window.innerWidth < 768 && navLinks.classList.contains('flex-col')) {
+                    navLinks.classList.add('hidden');
+                    navLinks.classList.remove('flex', 'flex-col', 'absolute', 'top-[70px]', 'left-0', 'w-full', 'bg-white', 'shadow-lg', 'py-6', 'px-6');
+                }
             }
         });
         
@@ -228,24 +293,27 @@
                 });
             });
         });
+        
         function toggleDropdown(event) {
-        	const dropdownMenu = event.target.nextElementSibling; // The <ul> element
-        	dropdownMenu.classList.toggle('show');
-        	const isExpanded = dropdownMenu.classList.contains('show');
-        	event.target.setAttribute('aria-expanded', isExpanded);
-    	}
+            const dropdownMenu = event.target.nextElementSibling; // The <ul> element
+            dropdownMenu.classList.toggle('hidden');
+            const isExpanded = !dropdownMenu.classList.contains('hidden');
+            event.target.setAttribute('aria-expanded', isExpanded);
+        }
 
-    // Close the dropdown if clicked outside
-    	document.addEventListener('click', function(event) {
-        	const dropdown = document.querySelector('.dropdown');
-        	const isClickInside = dropdown.contains(event.target);
-        	if (!isClickInside) {
-            		const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-            		dropdownMenu.classList.remove('show');
-            		const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
-            		dropdownToggle.setAttribute('aria-expanded', 'false');
-        	}
-    	});
+        // Close the dropdown if clicked outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.relative');
+            if (dropdown) {
+                const isClickInside = dropdown.contains(event.target);
+                if (!isClickInside) {
+                    const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+                    dropdownMenu.classList.add('hidden');
+                    const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+                    dropdownToggle.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
     </script>
 </body>
 </html>
