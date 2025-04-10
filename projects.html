@@ -1,226 +1,116 @@
-<div class="projects-section">
-  <div class="container">
-    <h2 class="section-title">Portfolio Projects</h2>
-    
-    <div class="cat-grids">
-      
-      <!-- Software Development -->
-      <div class="cat-cards">
-        <input type="checkbox" id="category1">
-        <label for="category1" class="cat-headers">
-          <h3 class="cat-titles">Software Development</h3>
-          <div class="cat-icons"><span class="expand-icon">+</span><span class="collapse-icon">−</span></div>
-        </label>
-        <div class="cat-contents">
-          
-          <!-- Utilitor -->
-          <div class="projcard">
-            <div class="projimage"><i class="fas fa-tools fa-3x"></i></div>
-            <div class="timlinetitle">Utilitor: Utility Aggregator Website</div>
-            <div class="timlinetags">
-              <span><i class="fab fa-js"></i> JavaScript</span>
-              <span><i class="fab fa-react"></i> Next.js</span>
-              <span><i class="fab fa-python"></i> Flask</span>
-            </div>
-            <div class="timlinedescription">
-              <p>Full-stack platform for converting PDFs, images, setting reminders, and more with SSR and REST APIs.</p>
-            </div>
-            <div class="timlineachievements">
-              <ul>
-                <li>Utility aggregator with tools like "Just Breathe", reminders, converters</li>
-                <li>SSR with Next.js for optimized UX</li>
-                <li>Python-based APIs for robust backends</li>
-              </ul>
-              <div class="projlinks">
-                <a href="https://github.com/vishwa419/utilitor" target="_blank">View Code Repository</a>
-              </div>
-            </div>
-          </div>
+<!-- Projects Section -->
+<section class="py-16 md:py-28 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-secondary mb-12 inline-block relative after:absolute after:bottom-[-12px] after:left-0 after:w-20 after:h-1 after:bg-gradient-primary">
+      Portfolio Projects
+    </h2>
 
-          <!-- FastTracker -->
-          <div class="projcard">
-            <div class="projimage"><i class="fas fa-calendar-check fa-3x"></i></div>
-            <div class="timlinetitle">FastTracker: Journal & Scheduling App</div>
-            <div class="timlinetags">
-              <span><i class="fab fa-golang"></i> Go</span>
-              <span><i class="fas fa-code"></i> HTMX</span>
-              <span><i class="fas fa-database"></i> PostgreSQL</span>
-            </div>
-            <div class="timlinedescription">
-              <p>Lightweight app for daily journaling, scheduling, and real-time task updates.</p>
-            </div>
-            <div class="timlineachievements">
-              <ul>
-                <li>Built with Go, HTMX, PostgreSQL</li>
-                <li>Real-time updates and clean UX</li>
-              </ul>
-              <div class="projlinks">
-                <a href="https://github.com/vishwa419/fasttracker" target="_blank">View Code Repository</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Portfolio Website -->
-          <div class="projcard">
-            <div class="projimage"><i class="fas fa-globe fa-3x"></i></div>
-            <div class="timlinetitle">Personal Portfolio Website</div>
-            <div class="timlinetags">
-              <span><i class="fab fa-html5"></i> HTML</span>
-              <span><i class="fab fa-css3-alt"></i> CSS</span>
-              <span><i class="fab fa-js"></i> JavaScript</span>
-            </div>
-            <div class="timlinedescription">
-              <p>Modern, responsive portfolio showcasing projects and skills.</p>
-            </div>
-            <div class="timlineachievements">
-              <ul>
-                <li>Deployed on GitHub Pages</li>
-                <li>Optimized for mobile and accessibility</li>
-              </ul>
-              <div class="projlinks">
-                <a href="https://github.com/vishwa419/portfolio" target="_blank">View Code Repository</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Just Breathe -->
-          <div class="projcard">
-            <div class="projimage"><i class="fas fa-spa fa-3x"></i></div>
-            <div class="timlinetitle">Just Breathe: Mindfulness App</div>
-            <div class="timlinetags">
-              <span><i class="fab fa-js"></i> JavaScript</span>
-              <span><i class="fas fa-heartbeat"></i> Health</span>
-            </div>
-            <div class="timlinedescription">
-              <p>Wellness-focused app for guided breathing and stress relief.</p>
-            </div>
-            <div class="timlineachievements">
-              <ul>
-                <li>Calming interface and UX</li>
-                <li>Promotes digital wellbeing</li>
-              </ul>
-              <div class="projlinks">
-                <a href="https://github.com/vishwa419/Just-breathe" target="_blank">View Code Repository</a>
-              </div>
-            </div>
-          </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <!-- Project Card Template -->
+      <div class="bg-white rounded-xl shadow-custom p-6 border border-light-gray border-opacity-50 hover:shadow-custom-hover transition-all duration-300 transform hover:-translate-y-1 animate-in">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-secondary">Utilitor</h3>
+          <i class="fas fa-tools fa-lg text-primary"></i>
         </div>
+        <p class="text-base mb-4">Full-stack utility aggregator platform built using JavaScript, Next.js, and Python Flask.</p>
+        <ul class="list-disc list-inside text-sm mb-4">
+          <li>Tools like PDF/Image converters, reminder app</li>
+          <li>SSR with Next.js for fast UX</li>
+          <li>Flask APIs for backend processing</li>
+        </ul>
+        <a href="https://github.com/vishwa419/utilitor" target="_blank" class="text-primary font-semibold hover:underline">View Code Repository</a>
       </div>
 
-      <!-- Machine Learning Engineering -->
-      <div class="cat-cards">
-        <input type="checkbox" id="category2">
-        <label for="category2" class="cat-headers">
-          <h3 class="cat-titles">Machine Learning Engineering</h3>
-          <div class="cat-icons"><span class="expand-icon">+</span><span class="collapse-icon">−</span></div>
-        </label>
-        <div class="cat-contents">
-
-          <!-- Explainable DL -->
-          <div class="projcard">
-            <div class="projimage"><i class="fas fa-brain fa-3x"></i></div>
-            <div class="timlinetitle">Explainable Deep Learning Algorithm</div>
-            <div class="timlinetags">
-              <span><i class="fab fa-python"></i> PyTorch</span>
-              <span><i class="fas fa-microchip"></i> CUDA</span>
-              <span>XAI</span>
-            </div>
-            <div class="timlinedescription">
-              <p>Novel CNN interpretability approach published in IEEE Xplore using layer whitening.</p>
-            </div>
-            <div class="timlineachievements">
-              <ul>
-                <li>Enhanced transparency of CNNs</li>
-                <li>Maintained model performance</li>
-              </ul>
-              <div class="projlinks">
-                <a href="https://github.com/vishwa419/explainable-dl" target="_blank">View Code Repository</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- GNN Causality -->
-          <div class="projcard">
-            <div class="projimage"><i class="fas fa-project-diagram fa-3x"></i></div>
-            <div class="timlinetitle">Causality-Guided GNN Privacy</div>
-            <div class="timlinetags">
-              <span><i class="fas fa-shield-alt"></i> Privacy</span>
-              <span>GNN</span>
-              <span>Causal Inference</span>
-            </div>
-            <div class="timlinedescription">
-              <p>Privacy-aware GNN model enforcing fairness through causality-guided knowledge limiting.</p>
-            </div>
-            <div class="timlineachievements">
-              <ul>
-                <li>Built with GNNExplainer</li>
-                <li>Fair & secure ML predictions</li>
-              </ul>
-              <div class="projlinks">
-                <a href="https://github.com/vishwa419/causal-gnn" target="_blank">View Code Repository</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- GNN Explainer Tool -->
-          <div class="projcard">
-            <div class="projimage"><i class="fas fa-eye fa-3x"></i></div>
-            <div class="timlinetitle">GNN Model Explainer Tool</div>
-            <div class="timlinetags">
-              <span><i class="fab fa-python"></i> Python</span>
-              <span>ML Explainability</span>
-            </div>
-            <div class="timlinedescription">
-              <p>Interpretability toolkit for visualizing GNN predictions.</p>
-            </div>
-            <div class="timlineachievements">
-              <ul>
-                <li>Enhances transparency in GNNs</li>
-                <li>Visualization and debugging support</li>
-              </ul>
-              <div class="projlinks">
-                <a href="https://github.com/vishwa419/gnn-model-explainer" target="_blank">View Code Repository</a>
-              </div>
-            </div>
-          </div>
-
+      <div class="bg-white rounded-xl shadow-custom p-6 border border-light-gray border-opacity-50 hover:shadow-custom-hover transition-all duration-300 transform hover:-translate-y-1 animate-in">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-secondary">FastTracker</h3>
+          <i class="fas fa-calendar-check fa-lg text-primary"></i>
         </div>
+        <p class="text-base mb-4">Daily journaling and scheduling app with real-time updates using Go, HTMX, and PostgreSQL.</p>
+        <ul class="list-disc list-inside text-sm mb-4">
+          <li>Clean UX with live task updates</li>
+          <li>Lightweight, fast, and efficient</li>
+        </ul>
+        <a href="https://github.com/vishwa419/fasttracker" target="_blank" class="text-primary font-semibold hover:underline">View Code Repository</a>
       </div>
 
-      <!-- Data Engineering -->
-      <div class="cat-cards">
-        <input type="checkbox" id="category3">
-        <label for="category3" class="cat-headers">
-          <h3 class="cat-titles">Data Engineering</h3>
-          <div class="cat-icons"><span class="expand-icon">+</span><span class="collapse-icon">−</span></div>
-        </label>
-        <div class="cat-contents">
-
-          <!-- Kafka Lakehouse -->
-          <div class="projcard">
-            <div class="projimage"><i class="fas fa-stream fa-3x"></i></div>
-            <div class="timlinetitle">Kafka-Based Data Lakehouse</div>
-            <div class="timlinetags">
-              <span><i class="fab fa-golang"></i> Go</span>
-              <span><i class="fas fa-server"></i> Microservices</span>
-              <span><i class="fas fa-chart-line"></i> Kafka</span>
-            </div>
-            <div class="timlinedescription">
-              <p>Scalable Kafka-powered data lakehouse system with Flask-based dashboard.</p>
-            </div>
-            <div class="timlineachievements">
-              <ul>
-                <li>Reduced ingestion latency by 25%</li>
-                <li>Real-time stream processing</li>
-              </ul>
-              <div class="projlinks">
-                <a href="https://github.com/vishwa419/kafka-lakehouse" target="_blank">View Code Repository</a>
-              </div>
-            </div>
-          </div>
-
+      <div class="bg-white rounded-xl shadow-custom p-6 border border-light-gray border-opacity-50 hover:shadow-custom-hover transition-all duration-300 transform hover:-translate-y-1 animate-in">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-secondary">Personal Portfolio Website</h3>
+          <i class="fas fa-globe fa-lg text-primary"></i>
         </div>
+        <p class="text-base mb-4">Responsive personal website showcasing projects and skills.</p>
+        <ul class="list-disc list-inside text-sm mb-4">
+          <li>Deployed on GitHub Pages</li>
+          <li>Mobile-first and accessibility-friendly</li>
+        </ul>
+        <a href="https://github.com/vishwa419/portfolio" target="_blank" class="text-primary font-semibold hover:underline">View Code Repository</a>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-custom p-6 border border-light-gray border-opacity-50 hover:shadow-custom-hover transition-all duration-300 transform hover:-translate-y-1 animate-in">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-secondary">Just Breathe</h3>
+          <i class="fas fa-spa fa-lg text-primary"></i>
+        </div>
+        <p class="text-base mb-4">Wellness app for guided breathing and stress relief.</p>
+        <ul class="list-disc list-inside text-sm mb-4">
+          <li>Promotes digital wellbeing</li>
+          <li>Calming interface & experience</li>
+        </ul>
+        <a href="https://github.com/vishwa419/Just-breathe" target="_blank" class="text-primary font-semibold hover:underline">View Code Repository</a>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-custom p-6 border border-light-gray border-opacity-50 hover:shadow-custom-hover transition-all duration-300 transform hover:-translate-y-1 animate-in">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-secondary">Explainable DL</h3>
+          <i class="fas fa-brain fa-lg text-primary"></i>
+        </div>
+        <p class="text-base mb-4">Novel XAI method for CNN interpretability published in IEEE Xplore.</p>
+        <ul class="list-disc list-inside text-sm mb-4">
+          <li>Uses whitening layers</li>
+          <li>Maintains model accuracy</li>
+        </ul>
+        <a href="https://github.com/vishwa419/explainable-dl" target="_blank" class="text-primary font-semibold hover:underline">View Code Repository</a>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-custom p-6 border border-light-gray border-opacity-50 hover:shadow-custom-hover transition-all duration-300 transform hover:-translate-y-1 animate-in">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-secondary">Causal GNN Privacy</h3>
+          <i class="fas fa-project-diagram fa-lg text-primary"></i>
+        </div>
+        <p class="text-base mb-4">Fair and private GNN model using causality-guided knowledge limiting.</p>
+        <ul class="list-disc list-inside text-sm mb-4">
+          <li>Built with GNNExplainer</li>
+          <li>Secures and balances predictions</li>
+        </ul>
+        <a href="https://github.com/vishwa419/causal-gnn" target="_blank" class="text-primary font-semibold hover:underline">View Code Repository</a>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-custom p-6 border border-light-gray border-opacity-50 hover:shadow-custom-hover transition-all duration-300 transform hover:-translate-y-1 animate-in">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-secondary">GNN Model Explainer</h3>
+          <i class="fas fa-eye fa-lg text-primary"></i>
+        </div>
+        <p class="text-base mb-4">Toolkit for explaining GNN predictions with visualization support.</p>
+        <ul class="list-disc list-inside text-sm mb-4">
+          <li>Improves model transparency</li>
+          <li>Useful for debugging GNNs</li>
+        </ul>
+        <a href="https://github.com/vishwa419/gnn-model-explainer" target="_blank" class="text-primary font-semibold hover:underline">View Code Repository</a>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-custom p-6 border border-light-gray border-opacity-50 hover:shadow-custom-hover transition-all duration-300 transform hover:-translate-y-1 animate-in">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold text-secondary">Kafka Lakehouse</h3>
+          <i class="fas fa-stream fa-lg text-primary"></i>
+        </div>
+        <p class="text-base mb-4">Scalable streaming data lakehouse built with Go, Kafka, and Flask.</p>
+        <ul class="list-disc list-inside text-sm mb-4">
+          <li>Reduced ingestion latency by 25%</li>
+          <li>Real-time dashboards</li>
+        </ul>
+        <a href="https://github.com/vishwa419/kafka-lakehouse" target="_blank" class="text-primary font-semibold hover:underline">View Code Repository</a>
       </div>
     </div>
   </div>
-</div>
+</section>
