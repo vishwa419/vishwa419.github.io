@@ -1,21 +1,23 @@
 :root {
-  /* Tech-oriented color scheme */
-  --primary-color: #0070f3;         /* Vibrant tech blue */
-  --primary-dark: #0055b3;          /* Darker blue for hover */
-  --secondary-color: #111827;       /* Deep tech-dark */
-  --accent-color: #00c4ff;          /* Tech accent for highlights */
+  /* Modern Data/ML Engineer color scheme */
+  --primary-color: #6e42c1;         /* Rich purple */
+  --primary-dark: #5a32a3;          /* Darker purple for hover */
+  --secondary-color: #121212;       /* Near black for depth */
+  --accent-color: #10c2c2;          /* Vibrant turquoise */
   --accent-green: #10b981;          /* Data/ML green accent */
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), #9062dd);
+  --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--accent-green));
   --text-color: #1f2937;            /* Main text */
   --text-light: #4b5563;            /* Secondary text */
   --bg-color: #f9fafb;              /* Main background */
   --card-bg: #ffffff;               /* Card background */
   --light-gray: #e5e7eb;            /* Borders, etc */
   --white: #ffffff;
-  --code-bg: #f3f4f6;               /* Background for code-like elements */
-  --border-radius: 6px;
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
+  --code-bg: #f1f1f4;               /* Background for code-like elements */
+  --border-radius: 8px;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.15);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   --grid-gap: 24px;
 }
 
@@ -52,11 +54,11 @@ p {
   margin-bottom: 1.5rem;
 }
 
-/* Modern tech-focused navigation */
+/* Data-centric Navigation */
 .navbar {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(10px);
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.07);
   position: fixed;
   width: 100%;
   top: 0;
@@ -80,6 +82,25 @@ p {
   text-decoration: none;
   margin-right: 1.5rem;
   letter-spacing: -0.5px;
+  position: relative;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .name {
@@ -127,10 +148,10 @@ p {
   left: 0;
   height: 3px;
   width: 100%;
-  background-color: var(--primary-color);
+  background: var(--gradient-primary);
 }
 
-/* Tech-inspired Hero Section */
+/* Data/ML Hero Section with Visual Elements */
 .hero {
   height: 100vh;
   display: flex;
@@ -146,8 +167,25 @@ p {
   right: 0;
   width: 60%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(0, 112, 243, 0.03) 0%, rgba(0, 196, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(110, 66, 193, 0.05) 0%, rgba(16, 194, 194, 0.08) 100%);
   clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+  z-index: -1;
+}
+
+/* Data points decoration */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 80% 10%, rgba(110, 66, 193, 0.1) 0%, transparent 12px),
+    radial-gradient(circle at 90% 20%, rgba(16, 194, 194, 0.1) 0%, transparent 24px),
+    radial-gradient(circle at 70% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 18px),
+    radial-gradient(circle at 95% 60%, rgba(110, 66, 193, 0.1) 0%, transparent 15px),
+    radial-gradient(circle at 75% 80%, rgba(16, 194, 194, 0.1) 0%, transparent 20px);
   z-index: -1;
 }
 
@@ -163,6 +201,17 @@ p {
   line-height: 1.1;
   margin-bottom: 1.2rem;
   letter-spacing: -1px;
+  position: relative;
+}
+
+.hero h1::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: var(--gradient-primary);
 }
 
 .hero h2 {
@@ -185,7 +234,7 @@ p {
   gap: 1.2rem;
 }
 
-/* Modern Tech Buttons */
+/* Modern ML/Data buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -206,26 +255,26 @@ p {
 }
 
 .btn.primary {
-  background-color: var(--primary-color);
+  background: var(--gradient-primary);
   color: var(--white);
-  box-shadow: 0 4px 14px rgba(0, 112, 243, 0.25);
+  box-shadow: 0 4px 14px rgba(110, 66, 193, 0.25);
 }
 
 .btn.primary:hover {
-  background-color: var(--primary-dark);
+  background: linear-gradient(135deg, #5a32a3, #7d52d2);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 112, 243, 0.35);
+  box-shadow: 0 6px 20px rgba(110, 66, 193, 0.35);
 }
 
 .btn.secondary {
   background-color: var(--white);
   color: var(--primary-color);
-  border: 1px solid rgba(0, 112, 243, 0.3);
-  box-shadow: 0 2px 8px rgba(0, 112, 243, 0.08);
+  border: 1px solid rgba(110, 66, 193, 0.3);
+  box-shadow: 0 2px 8px rgba(110, 66, 193, 0.08);
 }
 
 .btn.secondary:hover {
-  background-color: rgba(0, 112, 243, 0.05);
+  background-color: rgba(110, 66, 193, 0.05);
   border-color: var(--primary-color);
   transform: translateY(-2px);
 }
@@ -234,9 +283,25 @@ p {
   margin-left: 0.6rem;
 }
 
-/* Section Styling - Tech Focus */
+/* Data-focused Section Styling */
 .content-section {
   padding: 7rem 0;
+  position: relative;
+}
+
+/* Add subtle data visualization background to sections */
+.content-section:nth-child(odd)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(110, 66, 193, 0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110, 66, 193, 0.01) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: -1;
 }
 
 .section-title {
@@ -256,10 +321,10 @@ p {
   left: 0;
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  background: var(--gradient-primary);
 }
 
-/* About Section - More balanced */
+/* About Section - Data/ML Focus */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -279,9 +344,23 @@ p {
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 2rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   border: 4px solid var(--white);
   background-color: var(--light-gray);
+  position: relative;
+}
+
+.profile-image::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 70px;
+  height: 70px;
+  background: var(--accent-color);
+  opacity: 0.15;
+  border-radius: 50%;
+  z-index: -1;
 }
 
 .profile-placeholder {
@@ -307,19 +386,19 @@ p {
   justify-content: center;
   width: 42px;
   height: 42px;
-  border-radius: 10px;
+  border-radius: 12px;
   background-color: var(--white);
   color: var(--primary-color);
   transition: var(--transition);
-  border: 1px solid rgba(0, 112, 243, 0.2);
+  border: 1px solid rgba(110, 66, 193, 0.2);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .social-links a:hover {
-  background-color: var(--primary-color);
+  background: var(--gradient-primary);
   color: var(--white);
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 112, 243, 0.2);
+  box-shadow: 0 5px 15px rgba(110, 66, 193, 0.2);
 }
 
 .about-text p {
@@ -332,6 +411,19 @@ p {
   margin-bottom: 1.3rem;
   font-size: 1.5rem;
   color: var(--secondary-color);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.about-text h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--gradient-accent);
 }
 
 .about-text ul {
@@ -346,14 +438,14 @@ p {
 }
 
 .about-text li::marker {
-  color: var(--primary-color);
+  color: var(--accent-color);
 }
 
 .resume-link {
   margin-top: 2.5rem;
 }
 
-/* Skills Section - Data & Tech focused */
+/* Skills Section - Data & ML focused */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -362,17 +454,35 @@ p {
 
 .skill-category {
   background-color: var(--white);
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   transition: var(--transition);
-  border: 1px solid rgba(229, 231, 235, 0.5);
+  border: 1px solid rgba(229, 231, 235, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-category::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 5px;
+  background: var(--gradient-accent);
+  opacity: 0.8;
+  transition: var(--transition);
 }
 
 .skill-category:hover {
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-hover);
   transform: translateY(-5px);
-  border-color: rgba(0, 112, 243, 0.2);
+  border-color: rgba(110, 66, 193, 0.2);
+}
+
+.skill-category:hover::after {
+  width: 100%;
 }
 
 .skill-category h3 {
@@ -392,7 +502,42 @@ p {
   left: 0;
   width: 50px;
   height: 3px;
-  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  background: var(--gradient-primary);
+}
+
+/* Data visualization inspired skill bars - New addition */
+.skill-bar-container {
+  margin-bottom: 1.5rem;
+}
+
+.skill-bar-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.skill-bar-name {
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+.skill-bar-level {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.skill-bar-bg {
+  height: 8px;
+  background-color: var(--light-gray);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: 10px;
+  transition: width 1s ease-in-out;
 }
 
 .skill-list {
@@ -402,119 +547,51 @@ p {
 }
 
 .skill-tag {
-  background-color: rgba(0, 112, 243, 0.07);
+  background-color: rgba(110, 66, 193, 0.07);
   color: var(--primary-color);
   padding: 0.55rem 1.2rem;
   border-radius: 20px;
   font-size: 0.95rem;
   font-weight: 500;
   transition: var(--transition);
-  border: 1px solid rgba(0, 112, 243, 0.1);
+  border: 1px solid rgba(110, 66, 193, 0.1);
 }
 
 .skill-tag:hover {
-  background-color: rgba(0, 112, 243, 0.15);
+  background-color: rgba(110, 66, 193, 0.15);
   transform: translateY(-3px);
-  box-shadow: 0 3px 8px rgba(0, 112, 243, 0.1);
+  box-shadow: 0 3px 8px rgba(110, 66, 193, 0.1);
 }
 
-/* Experience Section - Highlight tech achievements */
-.timeline {
-  position: relative;
-  padding-left: 2.8rem;
+/* Data/ML tags with specialized colors */
+.skill-tag.data {
+  background-color: rgba(16, 185, 129, 0.08);
+  color: var(--accent-green);
+  border-color: rgba(16, 185, 129, 0.15);
 }
 
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--primary-color), rgba(0, 112, 243, 0.2));
+.skill-tag.data:hover {
+  background-color: rgba(16, 185, 129, 0.15);
+  box-shadow: 0 3px 8px rgba(16, 185, 129, 0.15);
 }
 
-.timeline-item {
-  position: relative;
-  margin-bottom: 4rem;
-  padding-bottom: 2rem;
+.skill-tag.ml {
+  background-color: rgba(16, 194, 194, 0.08);
+  color: var(--accent-color);
+  border-color: rgba(16, 194, 194, 0.15);
 }
 
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -2.8rem;
-  top: 0.5rem;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: var(--primary-color);
-  border: 3px solid var(--bg-color);
-  box-shadow: 0 0 0 5px rgba(0, 112, 243, 0.1);
+.skill-tag.ml:hover {
+  background-color: rgba(16, 194, 194, 0.15);
+  box-shadow: 0 3px 8px rgba(16, 194, 194, 0.15);
 }
 
-.timeline-item:last-child {
-  margin-bottom: 0;
-}
-
-.timeline-date {
-  font-size: 0.95rem;
-  color: var(--text-light);
-  margin-bottom: 0.8rem;
-  font-weight: 600;
-  display: inline-block;
-  padding: 0.4rem 1rem;
-  background-color: rgba(0, 112, 243, 0.07);
-  border-radius: 20px;
-}
-
-.timeline-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 0.8rem;
-  color: var(--secondary-color);
-}
-
-.timeline-company {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  color: var(--primary-color);
-  font-weight: 600;
-}
-
-.timeline-description {
-  margin-bottom: 1.5rem;
-  font-size: 1.05rem;
-  line-height: 1.8;
-}
-
-.timeline-achievements {
-  padding-left: 1.8rem;
-  margin-top: 1.5rem;
-  border-top: 1px solid var(--light-gray);
-  padding-top: 1.5rem;
-}
-
-.timeline-achievements li {
-  margin-bottom: 0.9rem;
-  position: relative;
-  line-height: 1.7;
-}
-
-.timeline-achievements li::before {
-  content: "→";
-  color: var(--primary-color);
-  position: absolute;
-  left: -1.5rem;
-  font-weight: bold;
-}
-
-/* Experience Section - COMPLETELY REVISED with better padding */
+/* Experience Section - Data ML Focused */
 .experience-section .projcard {
   padding: 2.5rem;
   background: var(--white);
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
   margin-bottom: 2.5rem;
   display: flex;
   flex-direction: column;
@@ -523,7 +600,7 @@ p {
   max-width: 950px;
   margin-left: auto;
   margin-right: auto;
-  transition: all 0.35s ease;
+  transition: var(--transition);
   border: 1px solid rgba(229, 231, 235, 0.7);
   position: relative;
   overflow: hidden;
@@ -531,29 +608,72 @@ p {
 
 .experience-section .projcard:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
-  border-color: rgba(0, 112, 243, 0.3);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(110, 66, 193, 0.3);
 }
 
-.experience-section .projcard::after {
+.experience-section .projcard::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 6px;
-  height: 100%;
-  background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+  width: 100%;
+  height: 5px;
+  background: var(--gradient-primary);
+  transform: scaleX(0.3);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.experience-section .projcard:hover::before {
+  transform: scaleX(1);
+}
+
+/* Data visualization decoration */
+.experience-section .projcard::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background-image: 
+    radial-gradient(circle at 80% 20%, rgba(110, 66, 193, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(16, 194, 194, 0.05) 0%, transparent 50%);
+  opacity: 0.7;
+  z-index: 0;
 }
 
 .experience-section .projimage {
   height: 180px;
-  background-color: rgba(0, 112, 243, 0.04);
+  background: linear-gradient(135deg, rgba(110, 66, 193, 0.03) 0%, rgba(16, 194, 194, 0.03) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--primary-color);
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Data-inspired graph background */
+.experience-section .projimage::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background-image: linear-gradient(to top left, 
+    rgba(16, 194, 194, 0.1) 25%, 
+    transparent 25%,
+    transparent 50%, 
+    rgba(110, 66, 193, 0.1) 50%, 
+    rgba(110, 66, 193, 0.1) 75%, 
+    transparent 75%);
+  background-size: 20px 20px;
+  opacity: 0.4;
 }
 
 .experience-section .timelinetitle {
@@ -605,13 +725,154 @@ p {
 
 .experience-section .timelineachievements li::before {
   content: "→";
-  color: var(--primary-color);
+  color: var(--accent-color);
   position: absolute;
   left: -1.5rem;
   font-weight: bold;
 }
 
-/* Category Cards - Tech Style */
+/* Data visualization inspired metric cards */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.metric-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.8rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(229, 231, 235, 0.7);
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--gradient-accent);
+  opacity: 0.8;
+}
+
+.metric-value {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.metric-label {
+  color: var(--text-light);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Timeline with improved data visualization styling */
+.timeline {
+  position: relative;
+  padding-left: 2.8rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary-color), rgba(110, 66, 193, 0.2));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.8rem;
+  top: 0.5rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  border: 3px solid var(--bg-color);
+  box-shadow: 0 0 0 5px rgba(110, 66, 193, 0.1);
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-date {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background-color: rgba(110, 66, 193, 0.07);
+  border-radius: 20px;
+}
+
+.timeline-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: var(--secondary-color);
+}
+
+.timeline-company {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.timeline-description {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.timeline-achievements {
+  padding-left: 1.8rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--light-gray);
+  padding-top: 1.5rem;
+}
+
+.timeline-achievements li {
+  margin-bottom: 0.9rem;
+  position: relative;
+  line-height: 1.7;
+}
+
+.timeline-achievements li::before {
+  content: "→";
+  color: var(--accent-color);
+  position: absolute;
+  left: -1.5rem;
+  font-weight: bold;
+}
+
+/* Category Cards - ML/Data Style */
 .cat-grids {
   display: grid;
   grid-template-columns: 1fr;
@@ -621,16 +882,16 @@ p {
 
 .cat-cards {
   background-color: var(--white);
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
   overflow: hidden;
   border: 1px solid rgba(229, 231, 235, 0.7);
   transition: var(--transition);
 }
 
 .cat-cards:hover {
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 112, 243, 0.2);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(110, 66, 193, 0.2);
 }
 
 .cat-headers {
@@ -639,13 +900,13 @@ p {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  background: linear-gradient(90deg, rgba(0, 112, 243, 0.03) 0%, rgba(0, 196, 255, 0.03) 100%);
+  background: linear-gradient(90deg, rgba(110, 66, 193, 0.03) 0%, rgba(16, 194, 194, 0.03) 100%);
   border-bottom: 1px solid rgba(229, 231, 235, 0.7);
   transition: var(--transition);
 }
 
 .cat-headers:hover {
-  background: linear-gradient(90deg, rgba(0, 112, 243, 0.07) 0%, rgba(0, 196, 255, 0.07) 100%);
+  background: linear-gradient(90deg, rgba(110, 66, 193, 0.07) 0%, rgba(16, 194, 194, 0.07) 100%);
 }
 
 .cat-titles {
@@ -664,13 +925,13 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 112, 243, 0.1);
+  background-color: rgba(110, 66, 193, 0.1);
   border-radius: 50%;
   transition: var(--transition);
 }
 
 .cat-headers:hover .cat-icons {
-  background-color: rgba(0, 112, 243, 0.15);
+  background-color: rgba(110, 66, 193, 0.15);
   transform: rotate(90deg);
 }
 
@@ -694,6 +955,17 @@ p {
 .cat-cards input[type="checkbox"]:checked + .cat-headers + .cat-contents {
   display: block;
 }
+
+/* Tags for Tech Stack */
+.timlinetags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 1.2rem 0;
+  padding: 0 !important;
+}
+
+.timlinetags span
 
 /* Tags for Tech Stack */
 .timlinetags {
