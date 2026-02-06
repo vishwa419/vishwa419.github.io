@@ -1,191 +1,344 @@
 import { motion } from "framer-motion";
 import { PageLayout } from "@/components/PageLayout";
-import { ArrowRight, Layers, Server, Database, Cloud, Activity, Network } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const stackLayers = [
-  {
-    layer: "L7",
-    name: "Application",
-    color: "terminal-purple",
-    icon: Layers,
-    skills: ["Go", "Python", "JavaScript"],
-    description: "Core languages powering the platform",
-  },
-  {
-    layer: "L6",
-    name: "ML/AI Runtime",
-    color: "terminal",
-    icon: Server,
-    skills: ["SLURM", "vLLM", "Kubeflow", "PyTorch", "TensorFlow"],
-    description: "Machine learning infrastructure & training systems",
-  },
-  {
-    layer: "L5",
-    name: "Orchestration",
-    color: "cyan",
-    icon: Cloud,
-    skills: ["Kubernetes (EKS)", "Terraform", "ArgoCD", "Docker"],
-    description: "Container orchestration & infrastructure as code",
-  },
-  {
-    layer: "L4",
-    name: "Data Layer",
-    color: "amber",
-    icon: Database,
-    skills: ["Kafka", "Flink", "Spark", "OpenSearch", "Redis"],
-    description: "Real-time streaming & data processing",
-  },
-  {
-    layer: "L3",
-    name: "Observability",
-    color: "terminal",
-    icon: Activity,
-    skills: ["OpenTelemetry", "Prometheus", "Grafana", "CloudWatch"],
-    description: "Monitoring, tracing & system visibility",
-  },
-  {
-    layer: "L2",
-    name: "Network",
-    color: "cyan",
-    icon: Network,
-    skills: ["gRPC", "REST", "WebSocket", "InfiniBand"],
-    description: "High-performance communication protocols",
-  },
+const skills = [
+  // Mix them up for organic feel
+  { name: "Kubernetes", size: "text-4xl md:text-5xl", color: "text-cyan", category: "cloud", proficiency: "Expert" },
+  { name: "Go", size: "text-2xl md:text-3xl", color: "text-terminal", category: "language", proficiency: "Proficient" },
+  { name: "System Design", size: "text-3xl md:text-4xl", color: "text-emerald-400", category: "soft", proficiency: "Advanced" },
+  { name: "Kafka", size: "text-4xl md:text-5xl", color: "text-amber", category: "data", proficiency: "Expert" },
+  { name: "Grafana", size: "text-xl md:text-2xl", color: "text-terminal", category: "observability", proficiency: "Working" },
+  { name: "Python", size: "text-4xl md:text-5xl", color: "text-terminal", category: "language", proficiency: "Expert" },
+  { name: "Problem Solving", size: "text-2xl md:text-3xl", color: "text-emerald-400", category: "soft", proficiency: "Advanced" },
+  { name: "vLLM", size: "text-2xl md:text-3xl", color: "text-purple-400", category: "ml", proficiency: "Proficient" },
+  { name: "AWS", size: "text-3xl md:text-4xl", color: "text-cyan", category: "cloud", proficiency: "Advanced" },
+  { name: "Redis", size: "text-xl md:text-2xl", color: "text-amber", category: "data", proficiency: "Working" },
+  { name: "Collaboration", size: "text-2xl md:text-3xl", color: "text-emerald-400", category: "soft", proficiency: "Advanced" },
+  { name: "PyTorch", size: "text-3xl md:text-4xl", color: "text-purple-400", category: "ml", proficiency: "Advanced" },
+  { name: "OpenSearch", size: "text-xl md:text-2xl", color: "text-amber", category: "data", proficiency: "Working" },
+  { name: "Terraform", size: "text-3xl md:text-4xl", color: "text-cyan", category: "cloud", proficiency: "Advanced" },
+  { name: "Debugging", size: "text-2xl md:text-3xl", color: "text-emerald-400", category: "soft", proficiency: "Advanced" },
+  { name: "SLURM", size: "text-2xl md:text-3xl", color: "text-purple-400", category: "ml", proficiency: "Proficient" },
+  { name: "Docker", size: "text-3xl md:text-4xl", color: "text-cyan", category: "cloud", proficiency: "Advanced" },
+  { name: "JavaScript", size: "text-xl md:text-2xl", color: "text-terminal", category: "language", proficiency: "Working" },
+  { name: "Mentoring", size: "text-xl md:text-2xl", color: "text-emerald-400", category: "soft", proficiency: "Proficient" },
+  { name: "Flink", size: "text-2xl md:text-3xl", color: "text-amber", category: "data", proficiency: "Proficient" },
+  { name: "Kubeflow", size: "text-xl md:text-2xl", color: "text-purple-400", category: "ml", proficiency: "Working" },
+  { name: "Documentation", size: "text-xl md:text-2xl", color: "text-emerald-400", category: "soft", proficiency: "Proficient" },
+  { name: "Spark", size: "text-3xl md:text-4xl", color: "text-amber", category: "data", proficiency: "Advanced" },
+  { name: "gRPC", size: "text-xl md:text-2xl", color: "text-cyan", category: "cloud", proficiency: "Working" },
+  { name: "ArgoCD", size: "text-2xl md:text-3xl", color: "text-cyan", category: "cloud", proficiency: "Proficient" },
+  { name: "Code Review", size: "text-xl md:text-2xl", color: "text-emerald-400", category: "soft", proficiency: "Proficient" },
+  { name: "TensorFlow", size: "text-xl md:text-2xl", color: "text-purple-400", category: "ml", proficiency: "Working" },
+  { name: "Prometheus", size: "text-2xl md:text-3xl", color: "text-terminal", category: "observability", proficiency: "Proficient" },
+  { name: "Agile", size: "text-xl md:text-2xl", color: "text-emerald-400", category: "soft", proficiency: "Working" },
+  { name: "OpenTelemetry", size: "text-xl md:text-2xl", color: "text-terminal", category: "observability", proficiency: "Working" },
 ];
 
 const Skills = () => {
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+
   return (
-    <PageLayout section="Infrastructure Stack" sectionNumber="04">
-      <div className="container mx-auto px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-5xl mx-auto"
-        >
-          {/* Header */}
-          <div className="mb-16">
-            <div className="font-mono text-terminal text-sm mb-4">
-              $ docker inspect --format='{`{{.Config.Labels}}`}' platform-stack
-            </div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold mb-6">
-              Infrastructure <span className="text-terminal">Stack</span>
-            </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl">
-              The layered technology stack that powers scalable ML infrastructure.
-              Each layer builds upon the next, creating a robust platform.
-            </p>
-          </div>
-
-          {/* Stack visualization */}
-          <div className="relative">
-            {/* Vertical connection line */}
-            <div className="absolute left-6 md:left-12 top-0 bottom-0 w-px bg-gradient-to-b from-terminal via-cyan to-amber opacity-30" />
-
-            <div className="space-y-4">
-              {stackLayers.map((layer, index) => (
-                <motion.div
-                  key={layer.layer}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="relative pl-16 md:pl-24"
-                >
-                  {/* Layer indicator */}
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-3">
-                    <div className={`w-12 h-12 rounded-lg bg-secondary border flex items-center justify-center ${
-                      layer.color === "terminal" ? "border-terminal/50 text-terminal" :
-                      layer.color === "cyan" ? "border-cyan/50 text-cyan" :
-                      layer.color === "amber" ? "border-amber/50 text-amber" :
-                      "border-terminal-purple/50 text-terminal-purple"
-                    }`}>
-                      <layer.icon size={20} />
-                    </div>
-                  </div>
-
-                  {/* Content card */}
-                  <div className="bg-card border border-terminal/20 rounded-xl p-6 hover:border-terminal/40 transition-all duration-300 group">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                      <div>
-                        <div className="flex items-center gap-3 mb-1">
-                          <span className={`font-mono text-xs px-2 py-0.5 rounded ${
-                            layer.color === "terminal" ? "bg-terminal/20 text-terminal" :
-                            layer.color === "cyan" ? "bg-cyan/20 text-cyan" :
-                            layer.color === "amber" ? "bg-amber/20 text-amber" :
-                            "bg-terminal-purple/20 text-terminal-purple"
-                          }`}>
-                            {layer.layer}
-                          </span>
-                          <h3 className="font-display text-lg font-bold">{layer.name}</h3>
-                        </div>
-                        <p className="text-muted-foreground text-sm">{layer.description}</p>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      {layer.skills.map((skill) => (
-                        <motion.span
-                          key={skill}
-                          whileHover={{ scale: 1.05 }}
-                          className="font-mono text-sm px-3 py-1.5 rounded-lg bg-secondary border border-border hover:border-terminal/50 transition-all cursor-default"
-                        >
-                          {skill}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Stack summary */}
+    <PageLayout section="/skills" sectionNumber="03">
+      <div className="min-h-screen flex items-center py-8">
+        <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-12 bg-card border border-terminal/30 rounded-xl p-6"
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-6xl mx-auto"
           >
-            <div className="font-mono text-xs text-muted-foreground mb-4">
-              // stack_summary.json
+            {/* Header */}
+            <div className="mb-8">
+              <div className="font-mono text-terminal text-xs mb-3">
+                $ cat /etc/skills.conf
+              </div>
+              <h1 className="font-display text-3xl md:text-5xl font-bold mb-3">
+                Tech <span className="text-terminal">Stack</span>
+              </h1>
+              <p className="text-muted-foreground text-sm max-w-2xl mb-6">
+                Technologies I use to build scalable ML platforms. Size indicates proficiency.
+              </p>
+              
+              {/* Legend */}
+              <div className="flex flex-wrap gap-3 text-xs font-mono">
+                <span className="text-terminal">● Languages</span>
+                <span className="text-cyan">● Cloud & Infra</span>
+                <span className="text-amber">● Data & Streaming</span>
+                <span className="text-purple-400">● ML/AI</span>
+                <span className="text-emerald-400">● Soft Skills</span>
+              </div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-              <div>
-                <div className="font-display text-3xl font-bold text-terminal">6</div>
-                <div className="font-mono text-xs text-muted-foreground">Stack Layers</div>
-              </div>
-              <div>
-                <div className="font-display text-3xl font-bold text-amber">24</div>
-                <div className="font-mono text-xs text-muted-foreground">Technologies</div>
-              </div>
-              <div>
-                <div className="font-display text-3xl font-bold text-cyan">3</div>
-                <div className="font-mono text-xs text-muted-foreground">Languages</div>
-              </div>
-              <div>
-                <div className="font-display text-3xl font-bold text-terminal-purple">∞</div>
-                <div className="font-mono text-xs text-muted-foreground">Possibilities</div>
-              </div>
-            </div>
-          </motion.div>
 
-          {/* Continue link */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 text-terminal font-mono text-sm hover:gap-4 transition-all duration-300"
+            {/* Tag Cloud - Organic blob shape */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="py-12 mb-6 min-h-[600px] relative"
             >
-              <span>Establish Connection</span>
-              <ArrowRight size={16} />
-            </Link>
+              <div className="max-w-5xl mx-auto">
+                {/* Create rows with varying widths for blob effect */}
+                <div className="space-y-4">
+                  {/* Top - narrow */}
+                  <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 max-w-md mx-auto">
+                    {skills.slice(0, 3).map((skill, index) => {
+                      const randomX = (Math.random() - 0.5) * 10;
+                      const randomY = (Math.random() - 0.5) * 8;
+                      
+                      return (
+                        <motion.div
+                          key={skill.name}
+                          initial={{ opacity: 0, scale: 0.5, x: randomX, y: randomY }}
+                          animate={{ opacity: 1, scale: 1, x: randomX, y: randomY }}
+                          transition={{ 
+                            delay: index * 0.05,
+                            type: "spring",
+                            stiffness: 200,
+                            damping: 15
+                          }}
+                          whileHover={{ scale: 1.15, x: randomX, y: randomY }}
+                          onHoverStart={() => setHoveredSkill(skill.name)}
+                          onHoverEnd={() => setHoveredSkill(null)}
+                          className="relative cursor-default"
+                        >
+                          <span className={`${skill.size} ${skill.color} font-bold font-mono transition-all duration-300 hover:opacity-60`}>
+                            {skill.name}
+                          </span>
+                          
+                          {hoveredSkill === skill.name && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-20"
+                            >
+                              <div className="bg-background/95 backdrop-blur-sm border border-terminal rounded px-3 py-1.5 whitespace-nowrap shadow-xl">
+                                <div className="text-xs font-mono text-terminal font-bold">{skill.proficiency}</div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Upper middle - wider */}
+                  <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 max-w-3xl mx-auto">
+                    {skills.slice(3, 9).map((skill, index) => {
+                      const randomX = (Math.random() - 0.5) * 12;
+                      const randomY = (Math.random() - 0.5) * 10;
+                      
+                      return (
+                        <motion.div
+                          key={skill.name}
+                          initial={{ opacity: 0, scale: 0.5, x: randomX, y: randomY }}
+                          animate={{ opacity: 1, scale: 1, x: randomX, y: randomY }}
+                          transition={{ 
+                            delay: (index + 3) * 0.05,
+                            type: "spring",
+                            stiffness: 200,
+                            damping: 15
+                          }}
+                          whileHover={{ scale: 1.15, x: randomX, y: randomY }}
+                          onHoverStart={() => setHoveredSkill(skill.name)}
+                          onHoverEnd={() => setHoveredSkill(null)}
+                          className="relative cursor-default"
+                        >
+                          <span className={`${skill.size} ${skill.color} font-bold font-mono transition-all duration-300 hover:opacity-60`}>
+                            {skill.name}
+                          </span>
+                          
+                          {hoveredSkill === skill.name && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-20"
+                            >
+                              <div className="bg-background/95 backdrop-blur-sm border border-terminal rounded px-3 py-1.5 whitespace-nowrap shadow-xl">
+                                <div className="text-xs font-mono text-terminal font-bold">{skill.proficiency}</div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Center - widest */}
+                  <div className="flex flex-wrap justify-center gap-x-8 gap-y-5 max-w-4xl mx-auto">
+                    {skills.slice(9, 18).map((skill, index) => {
+                      const randomX = (Math.random() - 0.5) * 15;
+                      const randomY = (Math.random() - 0.5) * 12;
+                      
+                      return (
+                        <motion.div
+                          key={skill.name}
+                          initial={{ opacity: 0, scale: 0.5, x: randomX, y: randomY }}
+                          animate={{ opacity: 1, scale: 1, x: randomX, y: randomY }}
+                          transition={{ 
+                            delay: (index + 9) * 0.05,
+                            type: "spring",
+                            stiffness: 200,
+                            damping: 15
+                          }}
+                          whileHover={{ scale: 1.15, x: randomX, y: randomY }}
+                          onHoverStart={() => setHoveredSkill(skill.name)}
+                          onHoverEnd={() => setHoveredSkill(null)}
+                          className="relative cursor-default"
+                        >
+                          <span className={`${skill.size} ${skill.color} font-bold font-mono transition-all duration-300 hover:opacity-60`}>
+                            {skill.name}
+                          </span>
+                          
+                          {hoveredSkill === skill.name && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-20"
+                            >
+                              <div className="bg-background/95 backdrop-blur-sm border border-terminal rounded px-3 py-1.5 whitespace-nowrap shadow-xl">
+                                <div className="text-xs font-mono text-terminal font-bold">{skill.proficiency}</div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Lower middle - narrower */}
+                  <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 max-w-3xl mx-auto">
+                    {skills.slice(18, 25).map((skill, index) => {
+                      const randomX = (Math.random() - 0.5) * 12;
+                      const randomY = (Math.random() - 0.5) * 10;
+                      
+                      return (
+                        <motion.div
+                          key={skill.name}
+                          initial={{ opacity: 0, scale: 0.5, x: randomX, y: randomY }}
+                          animate={{ opacity: 1, scale: 1, x: randomX, y: randomY }}
+                          transition={{ 
+                            delay: (index + 18) * 0.05,
+                            type: "spring",
+                            stiffness: 200,
+                            damping: 15
+                          }}
+                          whileHover={{ scale: 1.15, x: randomX, y: randomY }}
+                          onHoverStart={() => setHoveredSkill(skill.name)}
+                          onHoverEnd={() => setHoveredSkill(null)}
+                          className="relative cursor-default"
+                        >
+                          <span className={`${skill.size} ${skill.color} font-bold font-mono transition-all duration-300 hover:opacity-60`}>
+                            {skill.name}
+                          </span>
+                          
+                          {hoveredSkill === skill.name && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-20"
+                            >
+                              <div className="bg-background/95 backdrop-blur-sm border border-terminal rounded px-3 py-1.5 whitespace-nowrap shadow-xl">
+                                <div className="text-xs font-mono text-terminal font-bold">{skill.proficiency}</div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Bottom - narrow */}
+                  <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 max-w-2xl mx-auto">
+                    {skills.slice(25).map((skill, index) => {
+                      const randomX = (Math.random() - 0.5) * 10;
+                      const randomY = (Math.random() - 0.5) * 8;
+                      
+                      return (
+                        <motion.div
+                          key={skill.name}
+                          initial={{ opacity: 0, scale: 0.5, x: randomX, y: randomY }}
+                          animate={{ opacity: 1, scale: 1, x: randomX, y: randomY }}
+                          transition={{ 
+                            delay: (index + 25) * 0.05,
+                            type: "spring",
+                            stiffness: 200,
+                            damping: 15
+                          }}
+                          whileHover={{ scale: 1.15, x: randomX, y: randomY }}
+                          onHoverStart={() => setHoveredSkill(skill.name)}
+                          onHoverEnd={() => setHoveredSkill(null)}
+                          className="relative cursor-default"
+                        >
+                          <span className={`${skill.size} ${skill.color} font-bold font-mono transition-all duration-300 hover:opacity-60`}>
+                            {skill.name}
+                          </span>
+                          
+                          {hoveredSkill === skill.name && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-20"
+                            >
+                              <div className="bg-background/95 backdrop-blur-sm border border-terminal rounded px-3 py-1.5 whitespace-nowrap shadow-xl">
+                                <div className="text-xs font-mono text-terminal font-bold">{skill.proficiency}</div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="bg-card border border-terminal/30 rounded-lg px-6 py-4 mb-6"
+            >
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center font-mono">
+                <div>
+                  <div className="text-2xl font-bold text-terminal">{skills.length}</div>
+                  <div className="text-xs text-muted-foreground">Technologies</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-cyan">6</div>
+                  <div className="text-xs text-muted-foreground">Domains</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-amber">3+</div>
+                  <div className="text-xs text-muted-foreground">Years</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-purple-400">∞</div>
+                  <div className="text-xs text-muted-foreground">Learning</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Continue link */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="text-center"
+            >
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 text-terminal font-mono text-xs hover:gap-3 transition-all duration-300"
+              >
+                <span>cd /contact</span>
+                <ArrowRight size={14} />
+              </Link>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </PageLayout>
   );

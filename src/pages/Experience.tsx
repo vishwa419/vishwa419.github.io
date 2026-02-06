@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { PageLayout } from "@/components/PageLayout";
-import { ArrowRight, CheckCircle2, ChevronRight, Layers } from "lucide-react";
+import { ArrowRight, Layers } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ProjectDetailDialog } from "@/components/ProjectDetailDialog";
 import { experienceArchitectures } from "@/data/experienceArchitectures";
@@ -9,64 +9,48 @@ import { experienceArchitectures } from "@/data/experienceArchitectures";
 const experiences = [
   {
     id: "syracuse",
-    stage: "STAGE_3",
     status: "RUNNING",
     title: "Software Engineer",
-    team: "Research Platform",
     company: "Syracuse University",
     location: "Remote, California",
     period: "Jun 2025 – Present",
-    metrics: {
-      researchers: "50+",
-      pipelines: "500+/day",
-      improvement: "60%",
-    },
-    tasks: [
-      "Designed multi-tenant GPU training platform (SLURM) with distributed training & checkpointing",
-      "Built LLM inference stack (vLLM + QLoRA) enabling high-throughput experimentation",
-      "Orchestrated 500+ ML pipelines/day on AWS EKS with sandbox isolation",
-      "Deployed GitOps IaC and OpenTelemetry reducing job failures by 60%",
+    metrics: ["50+ researchers", "500+ pipelines/day", "60% fewer failures"],
+    achievements: [
+      "Multi-tenant GPU training platform with distributed training",
+      "LLM inference stack (vLLM + QLoRA) for high-throughput experiments",
+      "GitOps IaC + OpenTelemetry monitoring",
     ],
+    transition: "Pursuing MS while building research infrastructure",
   },
   {
     id: "isro",
-    stage: "STAGE_2",
     status: "COMPLETED",
     title: "Software Engineer",
-    team: "AI/ML Platform",
     company: "ISRO",
     location: "Bangalore, India",
     period: "Jan 2022 – Jun 2023",
-    metrics: {
-      events: "1M+/day",
-      f1Score: "0.95",
-      deployTime: "<30min",
-    },
-    tasks: [
-      "Owned end-to-end ML infrastructure across SLURM, Kubernetes, SAN/Infiniband",
-      "Built Kafka + Flink/Spark pipelines processing 1M+ events/day with sub-200ms latency",
-      "Created CI/CD platform reducing model releases from days to <30 minutes",
-      "Deployed real-time anomaly detection (0.95 F1) for satellite failure alerts",
+    metrics: ["1M+ events/day", "0.95 F1 score", "<30min deploys"],
+    achievements: [
+      "End-to-end ML infrastructure (SLURM, K8s, SAN/Infiniband)",
+      "Kafka + Flink/Spark pipelines with sub-200ms latency",
+      "Real-time anomaly detection for satellite failure alerts",
     ],
+    transition: "Moved from backend to ML platform engineering",
   },
   {
     id: "nuviso",
-    stage: "STAGE_1",
     status: "COMPLETED",
     title: "Software Engineer",
-    team: "Observability",
     company: "Nuviso",
     location: "Bangalore, India",
     period: "Jun 2020 – Dec 2021",
-    metrics: {
-      devices: "500+",
-      stack: "Go + React",
-    },
-    tasks: [
-      "Architected streaming platform ingesting telemetry from 500+ devices into Kafka",
-      "Built Go + OpenSearch + React dashboards for incident response",
-      "Standardized containerized CI/CD + GitOps workflows across services",
+    metrics: ["500+ devices", "Go + React", "GitOps workflows"],
+    achievements: [
+      "Streaming platform ingesting telemetry from 500+ devices",
+      "Go + OpenSearch + React dashboards for incident response",
+      "Standardized containerized CI/CD across services",
     ],
+    transition: null,
   },
 ];
 
@@ -78,163 +62,158 @@ const Experience = () => {
     : null;
 
   return (
-    <PageLayout section="Pipeline History" sectionNumber="02">
-      <div className="container mx-auto px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-5xl mx-auto"
-        >
-          {/* Header */}
-          <div className="mb-16">
-            <div className="font-mono text-terminal text-sm mb-4">
-              $ kubectl get jobs --all-namespaces
-            </div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold mb-6">
-              Pipeline <span className="text-terminal">History</span>
-            </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl">
-              Each role is a stage in my career pipeline. Data flows through,
-              transformations happen, and value is delivered downstream.
-            </p>
-          </div>
-
-          {/* Pipeline visualization */}
-          <div className="relative">
-            {/* Central pipeline line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 gradient-pipeline opacity-30 hidden md:block" />
-
-            <div className="space-y-12">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={exp.id}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className={`relative flex flex-col md:flex-row ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  } items-start gap-8`}
-                >
-                  {/* Pipeline node */}
-                  <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 hidden md:flex">
-                    <div
-                      className={`w-4 h-4 rounded-full border-2 ${
-                        exp.status === "RUNNING"
-                          ? "bg-terminal border-terminal pulse-node"
-                          : "bg-secondary border-terminal/50"
-                      }`}
-                    />
-                  </div>
-
-                  {/* Content card — clickable */}
-                  <div className={`flex-1 ${index % 2 === 0 ? "md:pr-16" : "md:pl-16"}`}>
-                    <div
-                      onClick={() => setSelectedId(exp.id)}
-                      className="group bg-card border border-terminal/30 rounded-xl p-6 cursor-pointer transition-all duration-300 hover:border-terminal hover:shadow-[0_0_20px_rgba(20,184,166,0.15)] relative"
-                    >
-                      {/* Clickable hint — always visible */}
-                      <div className="absolute top-4 right-4 flex items-center gap-1.5 font-mono text-xs text-terminal/70 group-hover:text-terminal transition-colors">
-                        <Layers size={12} />
-                        <span className="hidden sm:inline">view architecture</span>
-                        <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-                      </div>
-
-                      {/* Stage header */}
-                      <div className="flex items-center gap-3 mb-4">
-                        <span
-                          className={`font-mono text-xs px-2 py-1 rounded ${
-                            exp.status === "RUNNING"
-                              ? "bg-terminal/20 text-terminal"
-                              : "bg-muted text-muted-foreground"
-                          }`}
-                        >
-                          {exp.stage}
-                        </span>
-                        <span
-                          className={`font-mono text-xs ${
-                            exp.status === "RUNNING"
-                              ? "text-terminal"
-                              : "text-muted-foreground"
-                          }`}
-                        >
-                          {exp.status}
-                        </span>
-                        <span className="font-mono text-xs text-muted-foreground ml-auto mr-28 sm:mr-36">
-                          {exp.period}
-                        </span>
-                      </div>
-
-                      {/* Role info */}
-                      <h3 className="font-display text-xl font-bold mb-1 group-hover:text-terminal transition-colors">
-                        {exp.title}
-                      </h3>
-                      <div className="text-terminal font-medium mb-1">{exp.team}</div>
-                      <div className="text-muted-foreground text-sm mb-4">
-                        {exp.company} • {exp.location}
-                      </div>
-
-                      {/* Metrics */}
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {Object.entries(exp.metrics).map(([key, value]) => (
-                          <span
-                            key={key}
-                            className="font-mono text-xs px-2 py-1 rounded bg-secondary border border-border"
-                          >
-                            <span className="text-muted-foreground">{key}:</span>{" "}
-                            <span className="text-amber">{value}</span>
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Tasks */}
-                      <div className="space-y-2">
-                        {exp.tasks.map((task, i) => (
-                          <div
-                            key={i}
-                            className="flex items-start gap-2 text-sm text-muted-foreground"
-                          >
-                            <CheckCircle2
-                              className="text-terminal flex-shrink-0 mt-0.5"
-                              size={14}
-                            />
-                            <span>{task}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Bottom CTA bar */}
-                      <div className="mt-5 pt-4 border-t border-terminal/10 flex items-center justify-center gap-2 font-mono text-xs text-terminal/60 group-hover:text-terminal transition-colors">
-                        <Layers size={14} />
-                        <span>Click to explore system architecture</span>
-                        <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Spacer for alternating layout */}
-                  <div className="flex-1 hidden md:block" />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Continue link */}
+    <PageLayout section="/experience" sectionNumber="01">
+      <div className="min-h-screen flex items-center py-8">
+        <div className="container mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-6xl mx-auto"
           >
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 text-terminal font-mono text-sm hover:gap-4 transition-all duration-300"
+            {/* Header */}
+            <div className="mb-8">
+              <div className="font-mono text-terminal text-xs mb-3">
+                $ cat experience.log
+              </div>
+              <h1 className="font-display text-3xl md:text-5xl font-bold mb-3">
+                Experience <span className="text-terminal">Timeline</span>
+              </h1>
+              <p className="text-muted-foreground text-sm max-w-2xl">
+                3+ years building ML platforms and data infrastructure
+              </p>
+            </div>
+
+            {/* Timeline */}
+            <div className="relative">
+              {/* Center line */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-terminal/20 hidden md:block" />
+
+              <div className="space-y-8">
+                {experiences.map((exp, index) => (
+                  <div key={exp.id}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.2 }}
+                      className="relative grid md:grid-cols-2 gap-4 items-start"
+                    >
+                      {/* Timeline dot */}
+                      <div className="absolute left-1/2 top-6 transform -translate-x-1/2 hidden md:flex z-10">
+                        <div
+                          className={`w-3 h-3 rounded-full border-2 ${
+                            exp.status === "RUNNING"
+                              ? "bg-terminal border-terminal pulse-node"
+                              : "bg-background border-terminal/50"
+                          }`}
+                        />
+                      </div>
+
+                      {/* Left: Role Card */}
+                      <div className="md:pr-8">
+                        <div className="bg-card border border-terminal/30 rounded-lg p-4">
+                          <div className="flex items-center gap-2 mb-3">
+                            <span
+                              className={`font-mono text-[10px] px-2 py-0.5 rounded ${
+                                exp.status === "RUNNING"
+                                  ? "bg-terminal/20 text-terminal"
+                                  : "bg-muted text-muted-foreground"
+                              }`}
+                            >
+                              {exp.status}
+                            </span>
+                            <span className="font-mono text-[10px] text-muted-foreground">
+                              {exp.period}
+                            </span>
+                          </div>
+
+                          <h3 className="font-display text-lg font-bold mb-1">
+                            {exp.title}
+                          </h3>
+                          <div className="text-terminal text-sm font-medium mb-1">
+                            {exp.company}
+                          </div>
+                          <div className="text-muted-foreground text-xs mb-3">
+                            {exp.location}
+                          </div>
+
+                          {/* Metrics */}
+                          <div className="flex flex-wrap gap-1.5">
+                            {exp.metrics.map((metric, i) => (
+                              <span
+                                key={i}
+                                className="font-mono text-[10px] px-2 py-1 rounded bg-secondary border border-terminal/20 text-terminal"
+                              >
+                                {metric}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right: Achievements Card */}
+                      <div className="md:pl-8">
+                        <div
+                          onClick={() => setSelectedId(exp.id)}
+                          className="bg-card border border-border rounded-lg p-4 cursor-pointer hover:border-terminal/50 transition-all group"
+                        >
+                          <div className="space-y-2 mb-3">
+                            {exp.achievements.map((achievement, i) => (
+                              <div
+                                key={i}
+                                className="flex items-start gap-2 text-xs text-muted-foreground"
+                              >
+                                <span className="text-terminal mt-0.5">→</span>
+                                <span>{achievement}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          <button className="flex items-center gap-1.5 text-terminal text-xs font-mono group-hover:gap-2 transition-all">
+                            <Layers size={12} />
+                            <span>View architecture</span>
+                            <ArrowRight size={12} />
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Transition story */}
+                    {exp.transition && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: index * 0.2 + 0.1 }}
+                        className="relative mt-4 mb-4"
+                      >
+                        <div className="flex items-center justify-center">
+                          <div className="bg-secondary border border-terminal/20 rounded-full px-4 py-1.5 font-mono text-xs text-muted-foreground">
+                            {exp.transition}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Continue link */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="mt-8 text-center"
             >
-              <span>View Deployments</span>
-              <ArrowRight size={16} />
-            </Link>
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 text-terminal font-mono text-xs hover:gap-3 transition-all duration-300"
+              >
+                <span>cd /projects</span>
+                <ArrowRight size={14} />
+              </Link>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Architecture Detail Dialog */}

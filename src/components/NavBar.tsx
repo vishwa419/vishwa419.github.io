@@ -4,12 +4,11 @@ import { Menu, X, Terminal } from "lucide-react";
 import { useState } from "react";
 
 const navItems = [
-  { path: "/", label: "Init", short: "~" },
-  { path: "/about", label: "System Overview", short: "01" },
-  { path: "/experience", label: "Pipeline History", short: "02" },
-  { path: "/projects", label: "Deployments", short: "03" },
-  { path: "/skills", label: "Stack", short: "04" },
-  { path: "/contact", label: "Connect", short: "05" },
+  { path: "/", label: "~/", short: "~" },
+  { path: "/experience", label: "/experience", short: "exp" },
+  { path: "/projects", label: "/projects", short: "proj" },
+  { path: "/skills", label: "/skills", short: "skill" },
+  { path: "/contact", label: "/contact", short: "msg" },
 ];
 
 export const NavBar = () => {
@@ -31,21 +30,30 @@ export const NavBar = () => {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-2">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`px-4 py-2 font-mono text-sm rounded-md transition-all duration-300 ${
+                className={`px-3 py-2 font-mono text-sm rounded-md transition-all duration-300 ${
                   location.pathname === item.path
                     ? "text-terminal bg-primary/10 border border-terminal/30"
                     : "text-muted-foreground hover:text-terminal hover:bg-primary/5"
                 }`}
               >
-                <span className="text-terminal/60 mr-1">{item.short}/</span>
                 {item.label}
               </Link>
             ))}
+            
+            {/* Resume Link */}
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-2 font-mono text-sm rounded-md transition-all duration-300 text-muted-foreground hover:text-terminal hover:bg-primary/5"
+            >
+              resume.pdf
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -77,10 +85,20 @@ export const NavBar = () => {
                       : "text-muted-foreground"
                   }`}
                 >
-                  <span className="text-terminal/60 mr-2">{item.short}/</span>
                   {item.label}
                 </Link>
               ))}
+              
+              {/* Resume Link - Mobile */}
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-3 font-mono text-sm rounded-md text-muted-foreground"
+                onClick={() => setIsOpen(false)}
+              >
+                resume.pdf
+              </a>
             </div>
           </motion.div>
         )}
