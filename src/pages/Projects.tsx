@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { PageLayout } from "@/components/PageLayout";
-import { ArrowRight, ExternalLink, Github, Activity, ChevronRight } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, Activity, ChevronRight, Layers } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ProjectDetailDialog } from "@/components/ProjectDetailDialog";
 import { projectArchitectures } from "@/data/projectArchitectures";
@@ -126,8 +126,9 @@ const Projects = () => {
                     <div className="col-span-3 hidden md:block">
                       <span className="font-mono text-xs text-muted-foreground truncate block">{project.image}</span>
                     </div>
-                    <div className="col-span-1 hidden md:flex justify-end">
-                      <ChevronRight size={16} className="text-muted-foreground group-hover:text-terminal transition-colors" />
+                    <div className="col-span-1 hidden md:flex justify-end items-center gap-1">
+                      <Layers size={12} className="text-muted-foreground group-hover:text-terminal transition-colors" />
+                      <ChevronRight size={14} className="text-muted-foreground group-hover:text-terminal group-hover:translate-x-0.5 transition-all" />
                     </div>
                   </div>
 
