@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { PageLayout } from "@/components/PageLayout";
-import { ArrowRight, ExternalLink, Github, Box, Activity } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, Activity, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ProjectDetailDialog } from "@/components/ProjectDetailDialog";
+import { projectArchitectures } from "@/data/projectArchitectures";
 
 const projects = [
   {
@@ -49,6 +52,12 @@ const projects = [
 ];
 
 const Projects = () => {
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
+
+  const selectedArchitecture = selectedProjectId
+    ? projectArchitectures.find((p) => p.id === selectedProjectId) ?? null
+    : null;
+
   return (
     <PageLayout section="Deployments" sectionNumber="03">
       <div className="container mx-auto px-6 py-16">
@@ -67,7 +76,8 @@ const Projects = () => {
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl">
               Production-ready projects running in the wild. Each container represents
-              a system I've designed, built, and shipped.
+              a system I've designed, built, and shipped.{" "}
+              <span className="text-terminal font-mono text-sm">Click a deployment to inspect its architecture.</span>
             </p>
           </div>
 
@@ -78,7 +88,8 @@ const Projects = () => {
               <div className="col-span-3">NAME</div>
               <div className="col-span-2 hidden md:block">NAMESPACE</div>
               <div className="col-span-2 hidden lg:block">REPLICAS</div>
-              <div className="col-span-4 hidden md:block">IMAGE</div>
+              <div className="col-span-3 hidden md:block">IMAGE</div>
+              <div className="col-span-1 hidden md:block text-right">INSPECT</div>
             </div>
 
             {/* Deployments list */}
@@ -92,8 +103,11 @@ const Projects = () => {
                   viewport={{ once: true }}
                   className="group"
                 >
-                  {/* Row summary */}
-                  <div className="grid grid-cols-12 gap-4 px-6 py-4 items-center hover:bg-secondary/30 transition-colors cursor-pointer">
+                  {/* Row summary — clickable */}
+                  <div
+                    onClick={() => setSelectedProjectId(project.id)}
+                    className="grid grid-cols-12 gap-4 px-6 py-4 items-center hover:bg-terminal/5 transition-colors cursor-pointer"
+                  >
                     <div className="col-span-1">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-terminal pulse-node" />
@@ -101,7 +115,7 @@ const Projects = () => {
                       </div>
                     </div>
                     <div className="col-span-11 md:col-span-3">
-                      <span className="font-mono text-sm text-terminal">{project.name}</span>
+                      <span className="font-mono text-sm text-terminal group-hover:underline">{project.name}</span>
                     </div>
                     <div className="col-span-2 hidden md:block">
                       <span className="font-mono text-xs text-muted-foreground">{project.namespace}</span>
@@ -109,8 +123,11 @@ const Projects = () => {
                     <div className="col-span-2 hidden lg:block">
                       <span className="font-mono text-xs text-terminal">{project.replicas}</span>
                     </div>
-                    <div className="col-span-4 hidden md:block">
+                    <div className="col-span-3 hidden md:block">
                       <span className="font-mono text-xs text-muted-foreground truncate block">{project.image}</span>
+                    </div>
+                    <div className="col-span-1 hidden md:flex justify-end">
+                      <ChevronRight size={16} className="text-muted-foreground group-hover:text-terminal transition-colors" />
                     </div>
                   </div>
 
@@ -143,16 +160,26 @@ const Projects = () => {
                             <span className="text-cyan">{project.metrics.runtime}</span>
                           </div>
                         </div>
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-terminal font-mono text-sm hover:underline"
-                        >
-                          <Github size={16} />
-                          <span>View Source</span>
-                          <ExternalLink size={12} />
-                        </a>
+                        <div className="flex gap-4">
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-terminal font-mono text-sm hover:underline"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <Github size={16} />
+                            <span>Source</span>
+                            <ExternalLink size={12} />
+                          </a>
+                          <button
+                            onClick={() => setSelectedProjectId(project.id)}
+                            className="inline-flex items-center gap-2 text-terminal font-mono text-sm hover:underline border border-terminal/30 px-3 py-1 rounded hover:bg-terminal/10 transition-colors"
+                          >
+                            <span>Inspect Architecture</span>
+                            <ChevronRight size={14} />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -186,6 +213,12 @@ const Projects = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Architecture Detail Dialog */}
+      <ProjectDetailDialog
+        project={selectedArchitecture}
+        onClose={() => setSelectedProjectId(null)}
+      />
     </PageLayout>
   );
 };
