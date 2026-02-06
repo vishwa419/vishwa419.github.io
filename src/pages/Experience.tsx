@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { PageLayout } from "@/components/PageLayout";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronRight, Layers } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ProjectDetailDialog } from "@/components/ProjectDetailDialog";
+import { experienceArchitectures } from "@/data/experienceArchitectures";
 
 const experiences = [
   {
@@ -68,6 +71,12 @@ const experiences = [
 ];
 
 const Experience = () => {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const selectedArchitecture = selectedId
+    ? experienceArchitectures.find((e) => e.id === selectedId) ?? null
+    : null;
+
   return (
     <PageLayout section="Pipeline History" sectionNumber="02">
       <div className="container mx-auto px-6 py-16">
@@ -85,7 +94,7 @@ const Experience = () => {
               Pipeline <span className="text-terminal">History</span>
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl">
-              Each role is a stage in my career pipeline. Data flows through, 
+              Each role is a stage in my career pipeline. Data flows through,
               transformations happen, and value is delivered downstream.
             </p>
           </div>
@@ -109,37 +118,57 @@ const Experience = () => {
                 >
                   {/* Pipeline node */}
                   <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 hidden md:flex">
-                    <div className={`w-4 h-4 rounded-full border-2 ${
-                      exp.status === "RUNNING" 
-                        ? "bg-terminal border-terminal pulse-node" 
-                        : "bg-secondary border-terminal/50"
-                    }`} />
+                    <div
+                      className={`w-4 h-4 rounded-full border-2 ${
+                        exp.status === "RUNNING"
+                          ? "bg-terminal border-terminal pulse-node"
+                          : "bg-secondary border-terminal/50"
+                      }`}
+                    />
                   </div>
 
-                  {/* Content card */}
+                  {/* Content card — clickable */}
                   <div className={`flex-1 ${index % 2 === 0 ? "md:pr-16" : "md:pl-16"}`}>
-                    <div className="bg-card border border-terminal/30 rounded-xl p-6 hover:border-terminal/60 transition-all duration-300">
+                    <div
+                      onClick={() => setSelectedId(exp.id)}
+                      className="group bg-card border border-terminal/30 rounded-xl p-6 cursor-pointer transition-all duration-300 hover:border-terminal hover:shadow-[0_0_20px_rgba(20,184,166,0.15)] relative"
+                    >
+                      {/* Clickable hint — always visible */}
+                      <div className="absolute top-4 right-4 flex items-center gap-1.5 font-mono text-xs text-terminal/70 group-hover:text-terminal transition-colors">
+                        <Layers size={12} />
+                        <span className="hidden sm:inline">view architecture</span>
+                        <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                      </div>
+
                       {/* Stage header */}
                       <div className="flex items-center gap-3 mb-4">
-                        <span className={`font-mono text-xs px-2 py-1 rounded ${
-                          exp.status === "RUNNING" 
-                            ? "bg-terminal/20 text-terminal" 
-                            : "bg-muted text-muted-foreground"
-                        }`}>
+                        <span
+                          className={`font-mono text-xs px-2 py-1 rounded ${
+                            exp.status === "RUNNING"
+                              ? "bg-terminal/20 text-terminal"
+                              : "bg-muted text-muted-foreground"
+                          }`}
+                        >
                           {exp.stage}
                         </span>
-                        <span className={`font-mono text-xs ${
-                          exp.status === "RUNNING" ? "text-terminal" : "text-muted-foreground"
-                        }`}>
+                        <span
+                          className={`font-mono text-xs ${
+                            exp.status === "RUNNING"
+                              ? "text-terminal"
+                              : "text-muted-foreground"
+                          }`}
+                        >
                           {exp.status}
                         </span>
-                        <span className="font-mono text-xs text-muted-foreground ml-auto">
+                        <span className="font-mono text-xs text-muted-foreground ml-auto mr-28 sm:mr-36">
                           {exp.period}
                         </span>
                       </div>
 
                       {/* Role info */}
-                      <h3 className="font-display text-xl font-bold mb-1">{exp.title}</h3>
+                      <h3 className="font-display text-xl font-bold mb-1 group-hover:text-terminal transition-colors">
+                        {exp.title}
+                      </h3>
                       <div className="text-terminal font-medium mb-1">{exp.team}</div>
                       <div className="text-muted-foreground text-sm mb-4">
                         {exp.company} • {exp.location}
@@ -148,7 +177,10 @@ const Experience = () => {
                       {/* Metrics */}
                       <div className="flex flex-wrap gap-2 mb-4">
                         {Object.entries(exp.metrics).map(([key, value]) => (
-                          <span key={key} className="font-mono text-xs px-2 py-1 rounded bg-secondary border border-border">
+                          <span
+                            key={key}
+                            className="font-mono text-xs px-2 py-1 rounded bg-secondary border border-border"
+                          >
                             <span className="text-muted-foreground">{key}:</span>{" "}
                             <span className="text-amber">{value}</span>
                           </span>
@@ -158,11 +190,24 @@ const Experience = () => {
                       {/* Tasks */}
                       <div className="space-y-2">
                         {exp.tasks.map((task, i) => (
-                          <div key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <CheckCircle2 className="text-terminal flex-shrink-0 mt-0.5" size={14} />
+                          <div
+                            key={i}
+                            className="flex items-start gap-2 text-sm text-muted-foreground"
+                          >
+                            <CheckCircle2
+                              className="text-terminal flex-shrink-0 mt-0.5"
+                              size={14}
+                            />
                             <span>{task}</span>
                           </div>
                         ))}
+                      </div>
+
+                      {/* Bottom CTA bar */}
+                      <div className="mt-5 pt-4 border-t border-terminal/10 flex items-center justify-center gap-2 font-mono text-xs text-terminal/60 group-hover:text-terminal transition-colors">
+                        <Layers size={14} />
+                        <span>Click to explore system architecture</span>
+                        <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
                   </div>
@@ -191,6 +236,12 @@ const Experience = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Architecture Detail Dialog */}
+      <ProjectDetailDialog
+        project={selectedArchitecture}
+        onClose={() => setSelectedId(null)}
+      />
     </PageLayout>
   );
 };
